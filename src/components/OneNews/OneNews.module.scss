@@ -1,0 +1,30 @@
+@import '../../scss/vars.scss';
+.oneNews {
+  padding-bottom: 41px;
+  border-bottom: 1px solid #dadada;
+  &__wrapper {
+    display: flex;
+    gap: 32px;
+  }
+  &__inner {
+    max-width: 736px;
+  }
+  &__subTitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: #8d8e97;
+  }
+  &__title {
+    margin-top: 8px;
+    margin-bottom: 24px;
+    font-size: 32px;
+    font-weight: 700;
+    color: $title;
+  }
+  &__text {
+    font-weight: 400;
+    font-size: 16px;
+    color: $text;
+    margin-bottom: 33px;
+  }
+}

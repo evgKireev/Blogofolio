@@ -1,0 +1,21 @@
+@import '../../scss/vars';
+.control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__btn {
+    border: none;
+    background-color: transparent;
+    svg {
+      width: 22px;
+      height: 22px;
+      cursor: pointer;
+    }
+  }
+  span {
+    font-weight: 700;
+    font-size: 16px;
+    margin-right: 25px;
+    color: $title;
+  }
+}

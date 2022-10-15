@@ -1,7 +1,6 @@
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { BiSearch } from 'react-icons/bi';
 import styles from './Header.module.scss';
-console.log(styles);
 function Header() {
   return (
     <header className={styles.inner}>
