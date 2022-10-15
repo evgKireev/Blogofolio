@@ -1,0 +1,19 @@
+@import '../../scss/vars.scss';
+.categiries {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  display: flex;
+  margin-top: 47px;
+  border-bottom: 1px solid #dadada;
+  text-align: center;
+  margin-bottom: 64px;
+  li {
+    margin-right: 120px;
+    padding-bottom: 24px;
+    cursor: pointer;
+    &:hover {
+      color: $acsent;
+    }
+  }
+}

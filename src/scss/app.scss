@@ -1,0 +1,25 @@
+@import '_reset.scss';
+@import '_vars.scss';
+@import '_media.scss';
+
+html,
+body {
+  height: 100%;
+  font-family: 'Inter', Roboto, system-ui, Tahoma, sans-serif;
+}
+
+body {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 56px;
+  font-weight: 700;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
