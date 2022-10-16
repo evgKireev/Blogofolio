@@ -1,6 +1,6 @@
 @import '../../scss/vars';
 .oneNews {
-  padding-bottom: 51px;
+  padding-bottom: 42px;
   margin-top: 38.5px;
   border-bottom: 1px solid #dadada;
   height: fit-content;
@@ -13,6 +13,7 @@
     color: #8d8e97;
   }
   &__title {
+    
     margin-top: 8px;
     margin-bottom: 29px;
     font-size: 18px;

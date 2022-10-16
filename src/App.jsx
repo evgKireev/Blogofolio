@@ -1,15 +1,20 @@
 import './scss/app.scss';
+
 import Header from './components/Header';
 import Home from './pages/Home';
 import Footer from './components/Fotter';
+import Pogination from './components/Pogination';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Header />
-      <Home />
-      <Footer />
-    </div>
+      <div className="container">
+        <Home />
+        <Pogination />
+        <Footer />
+      </div>
+    </>
   );
 }
 

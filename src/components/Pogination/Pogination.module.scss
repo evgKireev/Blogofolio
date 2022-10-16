@@ -1,0 +1,32 @@
+@import '../../scss/vars';
+
+ul {
+    font-weight: 600;
+  list-style: none;
+  padding: 72px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+li {
+  cursor: pointer;
+}
+
+.previous__item {
+  flex-basis: 500px;
+  flex-shrink: 2;
+  cursor: pointer;
+}
+
+.next__item {
+  flex-basis: 500px;
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 2;
+  cursor: pointer;
+}
+
+.active{
+color: $acsent;
+}
