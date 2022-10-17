@@ -1,6 +1,5 @@
 @import '../../scss/vars';
 .inner {
-  // overflow-x: hidden;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
@@ -61,8 +60,10 @@
   }
 
   &__search__block {
+    overflow: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     flex-basis: 1522px;
-    position: relative;
     &__closes {
       z-index: 1;
       position: absolute;
@@ -74,7 +75,7 @@
     }
 
     &__input {
-      transform: translateX(1500px);
+      transform: translateX(2000px);
       transition: all 0.5s;
       background-color: $acsentLight;
       width: 0;
