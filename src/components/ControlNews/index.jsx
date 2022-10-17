@@ -1,18 +1,35 @@
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
 import { BsBookmark, BsBookmarkFill, BsThreeDots } from 'react-icons/bs';
 import styles from './ControlNews.module.scss';
+
+import { setLikeDecrement, setLikeIncrement } from '../../redux/home/likeSlece';
+
 function ControlNews() {
+  const valueLikeInc = useSelector((state) => state.likeSlece.likeIncrement);
+  const valueLikeDec = useSelector((state) => state.likeSlece.likeDecrement);
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.control}>
       <div>
-        <button className={styles.control__btn} type="submit">
+        <button
+          onClick={() => dispatch(setLikeIncrement(valueLikeInc + 1))}
+          className={styles.control__btn}
+          type="submit"
+        >
           <AiOutlineLike />
         </button>
-        <span>20</span>
-        <button className={styles.control__btn} type="submit">
+        <span>{valueLikeInc}</span>
+        <button
+          onClick={() => dispatch(setLikeDecrement(valueLikeDec + 1))}
+          className={styles.control__btn}
+          type="submit"
+        >
           <AiOutlineDislike />
         </button>
-        <span className={styles.control__span}>0</span>
+        <span className={styles.control__span}>{valueLikeDec}</span>
       </div>
       <div>
         <button className={styles.control__btn} type="submit">

@@ -3,7 +3,7 @@ import OneNews from '../OneNews/index';
 import OneNewsAside from '../OneNewsAside/index';
 function Main() {
   return (
-    <main className="container">
+    <main>
       <h1>Blog</h1>
       <Categories />
       <div className="container__inner">

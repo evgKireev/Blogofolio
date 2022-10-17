@@ -1,22 +1,27 @@
 @import '../../scss/vars';
 
-ul {
-    font-weight: 600;
-  list-style: none;
-  padding: 72px 0;
+.items {
+  margin: 72px 0;
+  font-weight: 600;
   display: flex;
   justify-content: space-between;
   gap: 32px;
 }
 
-li {
+.item {
   cursor: pointer;
+  &:hover {
+    color: $acsent;
+  }
 }
 
 .previous__item {
   flex-basis: 500px;
   flex-shrink: 2;
   cursor: pointer;
+  &:hover {
+    color: $acsent;
+  }
 }
 
 .next__item {
@@ -25,8 +30,11 @@ li {
   justify-content: flex-end;
   flex-shrink: 2;
   cursor: pointer;
+  &:hover {
+    color: $acsent;
+  }
 }
 
-.active{
-color: $acsent;
+.active {
+  color: $acsent;
 }

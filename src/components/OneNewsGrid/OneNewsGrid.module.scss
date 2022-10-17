@@ -13,13 +13,16 @@
     color: #8d8e97;
   }
   &__title {
-    
     margin-top: 8px;
     margin-bottom: 29px;
     font-size: 18px;
     line-height: 28px;
     font-weight: 600;
     color: $title;
+    &:hover {
+      color: $acsent;
+      cursor: pointer;
+    }
   }
   &__img {
     width: 352px;

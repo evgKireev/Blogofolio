@@ -2,7 +2,7 @@
 .oneNews {
   padding-bottom: 40px;
   border-bottom: 1px solid #dadada;
-  height: fit-content;
+  height: 206px;
   margin-bottom: 40.5px;
   &__wrapper {
     display: flex;
@@ -25,10 +25,13 @@
     line-height: 28px;
     font-weight: 600;
     color: $title;
+    &:hover {
+      color: $acsent;
+      cursor: pointer;
+    }
   }
   &__img {
     width: 96px;
     height: 96px;
   }
 }
-

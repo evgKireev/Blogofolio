@@ -2,13 +2,14 @@
 .inner {
   font-size: 16px;
   font-weight: 600;
+  line-height: 24px;
   color: $white;
   height: 84px;
   background-color: $acsent;
   display: flex;
   justify-content: space-between;
   margin-bottom: 72px;
-
+  position: relative;
   &__menu {
     padding: 34px 32px;
     background-color: transparent;
@@ -54,4 +55,5 @@
     border-radius: 2px;
     cursor: pointer;
   }
+  
 }

@@ -1,26 +1,13 @@
 @import 'scss/vars';
 @import 'scss/media';
-
-html,
-body {
-  box-sizing: border-box;
-  height: 100%;
-  font-family: 'Inter', Roboto, system-ui, Tahoma, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  max-width: 1920px;
-  margin: 0 auto;
-  color: $title;
-}
-
 *,
 *::after,
 *::before {
   box-sizing: inherit;
 }
 
-ul[class],
-ol[class] {
+ul,
+ol {
   padding: 0;
 }
 
@@ -43,7 +30,7 @@ dd {
   margin: 0;
 }
 
-ul[class] {
+ul {
   list-style: none;
 }
 
@@ -62,8 +49,20 @@ a {
   text-decoration: none;
 }
 
+html,
+body {
+  box-sizing: border-box;
+  height: 100%;
+  font-family: 'Inter', Roboto, system-ui, Tahoma, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  max-width: 1920px;
+  margin: 0 auto;
+  color: $title;
+}
+
 h1 {
   font-size: 56px;
   font-weight: 700;
+  line-height: 80px;
 }
-
