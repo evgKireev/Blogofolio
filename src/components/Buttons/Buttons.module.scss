@@ -1,0 +1,47 @@
+@import '../../scss/vars';
+.buttons {
+  margin-right: 10px;
+  padding: 16px 32px;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.primary {
+  background-color: $acsent;
+  color: #fff;
+  &:hover {
+    background-color: $acsentLight;
+  }
+}
+
+.secondary {
+  background-color: $bgLog;
+  color: $title;
+  &:hover {
+    background-color: #dadada;
+  }
+}
+
+.error {
+  background-color: transparent;
+  color: $error;
+  &:hover {
+    border: 1px solid #dadada;
+    line-height: 23px;
+  }
+}
+
+.disabled {
+  background-color: $bgLog;
+  color: $text;
+  pointer-events: none;
+  &__error {
+    color: $text;
+    background-color: transparent;
+  }
+}
