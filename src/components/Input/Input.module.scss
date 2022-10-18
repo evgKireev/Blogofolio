@@ -1,0 +1,35 @@
+@import '../../scss/vars';
+.input {
+  padding: 18px 20px;
+  border-color: #fff;
+  width: 554px;
+  margin-top: 8px;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+  color: $title;
+  &::placeholder {
+    color: #8d8e97;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  &:focus {
+    border: 2px solid #dadada;
+    border-radius: 2px;
+  }
+}
+
+.error {
+  border: 2px solid $error;
+  &:focus {
+    border: 2px solid $error;
+  }
+}
+
+.disabled{
+    background-color: $bgLog;
+    pointer-events: none;
+}

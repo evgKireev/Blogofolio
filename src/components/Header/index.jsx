@@ -4,6 +4,8 @@ import styles from './Header.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { setValueMenu, setValueCloseInput } from '../../redux/home/menuSlice';
 import Menu from '../Menu';
+import UserControl from '../UserControl';
+
 function Header() {
   const dispath = useDispatch();
   const valueMenu = useSelector((state) => state.menuSlice.valueMenu);
@@ -47,12 +49,7 @@ function Header() {
         >
           <BiSearch />
         </button>
-        <div className={styles.inner__profailes}>
-          <button className={styles.inner__profailes_btn} type="submit">
-            AM
-          </button>
-          <span>Artem Malkin</span>
-        </div>
+        <UserControl userName="Artem Malkin" onClick={() => console.log(1)} />
       </div>
       <Menu />
     </header>

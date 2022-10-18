@@ -1,14 +1,15 @@
+import React from 'react';
 import styles from './Categories.module.scss';
-import { useSelector, useDispatch } from 'react-redux';
 import { setCategories } from '../../redux/home/categoriesSlice';
+import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 
-function Categories() {
-  const categoties = ['All', 'My favorites', 'Popular'];
-  const valueCategories = useSelector(
+const Categories: React.FC = () => {
+  const categoties: string[] = ['All', 'My favorites', 'Popular'];
+  const valueCategories = useAppSelector(
     (state) => state.categoriesSlice.valueCategoria
   );
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   return (
     <>
       <ul className={styles.categiries}>
@@ -18,7 +19,7 @@ function Categories() {
             className={
               valueCategories === index ? styles.item__active : styles.item
             }
-            key={index}
+            key={value}
           >
             {value}
           </li>
@@ -26,6 +27,6 @@ function Categories() {
       </ul>
     </>
   );
-}
+};
 
 export default Categories;

@@ -13,16 +13,15 @@ export type typeButton = {
   type: ButtonType;
   onClick: () => void;
   className: string;
-  disabled: boolean;
+  disabled?: boolean;
+  error: string;
 };
 
-const Buttons: FC<typeButton> = ({ title, type, onClick, disabled }) => {
+const Buttons: FC<typeButton> = ({ title, type, onClick, disabled, error }) => {
   const stylesButton = styles[type];
 
-  console.log(styles.disabled__error);
-
   return (
-    <>
+    <div>
       <button
         className={classNames(
           styles.buttons,
@@ -36,7 +35,8 @@ const Buttons: FC<typeButton> = ({ title, type, onClick, disabled }) => {
       >
         <p>{title}</p>
       </button>
-    </>
+      <p>{error && <div>{error}</div>}</p>
+    </div>
   );
 };
 
