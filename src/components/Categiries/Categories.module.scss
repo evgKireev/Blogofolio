@@ -19,8 +19,7 @@
   transition: all 0.5s;
   &:hover {
     color: $acsent;
-    transition: all .10s;
-
+    transition: all 0.1s;
   }
   &__active {
     margin-right: 40px;
@@ -31,4 +30,12 @@
       transition: all 0.1s;
     }
   }
+}
+
+.activeMon {
+  border-bottom: 2px solid $white;
+}
+
+.categiriesMon {
+  border-bottom: 1px solid #8D8E97;
 }

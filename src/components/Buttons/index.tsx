@@ -14,14 +14,13 @@ export type typeButton = {
   onClick: () => void;
   className: string;
   disabled?: boolean;
-  error: string;
+  error?: string;
 };
 
 const Buttons: FC<typeButton> = ({ title, type, onClick, disabled, error }) => {
   const stylesButton = styles[type];
-
   return (
-    <div>
+    <>
       <button
         className={classNames(
           styles.buttons,
@@ -36,7 +35,7 @@ const Buttons: FC<typeButton> = ({ title, type, onClick, disabled, error }) => {
         <p>{title}</p>
       </button>
       <p>{error && <div>{error}</div>}</p>
-    </div>
+    </>
   );
 };
 

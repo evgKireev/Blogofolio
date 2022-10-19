@@ -1,5 +1,4 @@
 import styles from './UserControl.module.scss';
-
 type userNameType = {
   userName: string;
   onClick: () => void;
@@ -15,5 +14,4 @@ const UserControl: React.FC<userNameType> = ({ userName, onClick }) => {
     </div>
   );
 };
-
 export default UserControl;

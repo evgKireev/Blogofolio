@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
 const menuSlice = createSlice({
   name: 'menu',
   initialState: {
     valueMenu: false,
-    valueCloseInput: false
+    valueCloseInput: false,
+    valueOnMon: false,
   },
   reducers: {
     setValueMenu: (state, actions) => {
@@ -14,8 +14,11 @@ const menuSlice = createSlice({
     setValueCloseInput: (state, actions) => {
       state.valueCloseInput = actions.payload;
     },
+    setValueOnMon: (state, actions) => {
+      state.valueOnMon = actions.payload;
+    },
   },
 });
 
-export const { setValueMenu, setValueCloseInput } = menuSlice.actions;
+export const { setValueMenu, setValueCloseInput,setValueOnMon } = menuSlice.actions;
 export default menuSlice.reducer;

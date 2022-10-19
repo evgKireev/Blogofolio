@@ -1,19 +1,27 @@
+//@ts-ignore
 import styles from './OneNews.module.scss';
 import images from '..//../assets/img/Rectangle39.png';
 import ControlNews from '../ControlNews';
 import OneNewsGrid from '../OneNewsGrid';
+import { useAppSelector } from '../../redux/hooks';
+import classNames from 'classnames';
 function OneNews() {
+  const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
   return (
     <div>
       <div className={styles.oneNews}>
-        <div className={styles.oneNews__wrapper}>
-          <div className={styles.oneNews__inner}>
-            <span className={styles.oneNews__subTitle}>April 20, 2021</span>
-            <h2 className={styles.oneNews__title}>
+        <div className={styles.wrapper}>
+          <div className={styles.inner}>
+            <span className={styles.subTitle}>April 20, 2021</span>
+            <h2
+              className={classNames(styles.title, {
+                [styles.bodyMon]: valueOnMon,
+              })}
+            >
               Astronauts prep for new solar arrays on nearly seven-hour
               spacewalk ...
             </h2>
-            <p className={styles.oneNews__text}>
+            <p className={styles.text}>
               Astronauts Kayla Barron and Raja Chari floated out of the
               International Space Station airlock for a spacewalk Tuesday,
               installing brackets and struts to support new solar arrays to
@@ -23,7 +31,7 @@ function OneNews() {
             </p>
           </div>
           <div>
-            <img src={images} alt="" />
+            <img src={images} alt="img" />
           </div>
         </div>
         <ControlNews />

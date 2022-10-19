@@ -1,19 +1,46 @@
 @import '_vars.scss';
 @import '_media.scss';
 
+html,
+body {
+  box-sizing: border-box;
+  height: 100%;
+  font-family: 'Inter', Roboto, system-ui, Tahoma, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0 auto;
+  color: $title;
+   background-color: $white;
+}
+
+.bodyMon {
+  background-color: #313037;
+  transition: all 0.8s;
+  color: white;
+}
+
+.bodySun{
+  background-color: $white;
+  transition: all 0.8s;
+}
+
+h1 {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 80px;
+}
+
 .container {
   max-width: 1120px;
   margin: 0 auto;
   padding: 0 10px;
+  padding-top: 72px;
 }
 
 .container__inner {
-    display: flex;
-    gap: 30px;
-    justify-content: space-between;
-    font-size: 18px;
-    margin-top: 64px;
-  }
-
-  
-
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+  font-size: 18px;
+  margin-top: 64px;
+}

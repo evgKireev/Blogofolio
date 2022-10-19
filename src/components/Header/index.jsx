@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setValueMenu, setValueCloseInput } from '../../redux/home/menuSlice';
 import Menu from '../Menu';
 import UserControl from '../UserControl';
+import { useRef } from 'react';
 
 function Header() {
   const dispath = useDispatch();

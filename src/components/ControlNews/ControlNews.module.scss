@@ -3,23 +3,27 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  &__btn {
-    border: none;
-    background-color: transparent;
-    svg {
-      width: 22px;
-      height: 22px;
-      cursor: pointer;
-      &:hover{
-        transform: scale(1.1);
-        color: $acsent;
-      }
-    }
+}
+.btn {
+  border: none;
+  background-color: transparent;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  margin-right: 8px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+    color: $acsent;
   }
-  span {
-    font-weight: 700;
-    font-size: 16px;
-    margin-right: 25px;
-    color: $title;
-  }
+}
+
+.span {
+  font-weight: 700;
+  font-size: 16px;
+  margin-right: 25px;
+}
+
+.bodyMon {
+  color: $white;
 }

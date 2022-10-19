@@ -8,21 +8,19 @@
   background-color: $acsent;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 72px;
-  position: relative;
   &__menu {
     padding: 34px 32px;
     background-color: transparent;
     border: none;
     border-right: 1px solid $acsentLight;
     cursor: pointer;
-
     svg {
       color: $white;
       width: 25px;
       height: 21px;
     }
   }
+
   &__search {
     padding: 28px 36px;
     background-color: transparent;

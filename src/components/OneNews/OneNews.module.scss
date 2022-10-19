@@ -2,38 +2,42 @@
 .oneNews {
   padding-bottom: 40.5px;
   border-bottom: 1px solid #dadada;
-  &__wrapper {
-    display: flex;
-    gap: 32px;
+}
+.wrapper {
+  display: flex;
+  gap: 32px;
+}
+.inner {
+  max-width: 736px;
+}
+.subTitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #8d8e97;
+  line-height: 24px;
+}
+.title {
+  margin-top: 8px;
+  margin-bottom: 24px;
+  font-size: 32px;
+  font-weight: 700;
+  color: $title;
+  line-height: 44px;
+  &:hover {
+    color: $acsent;
+    cursor: pointer;
   }
-  &__inner {
-    max-width: 736px;
-  }
-  &__subTitle {
-    font-size: 16px;
-    font-weight: 400;
-    color: #8d8e97;
-    line-height: 24px;
-  }
-  &__title {
-    margin-top: 8px;
-    margin-bottom: 24px;
-    font-size: 32px;
-    font-weight: 700;
-    color: $title;
-    line-height: 44px;
-    &:hover {
-      color: $acsent;
-      cursor: pointer;
-    }
-  }
-  &__text {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 28px;
-    color: $text;
-    margin-bottom: 32.5px;
-  }
+}
+
+.bodyMon {
+  color: white;
+}
+.text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  color: $text;
+  margin-bottom: 32.5px;
 }
 
 .grid {

@@ -7,69 +7,70 @@
   top: 81px;
   background-color: $acsent;
   border-top: 1px solid $acsentLight;
+}
 
-  &__profailes {
-    padding: 17px 34px 18px 34px;
-  }
-  &__profailes_btn {
-    padding: 13px 13px;
-    border: none;
-    background-color: $acsentLight;
-    font-size: 16px;
-    margin-right: 16px;
-    color: $white;
-    border-radius: 2px;
-    cursor: pointer;
-  }
-  &__menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 80vh;
-    color: $title;
-    background-color: #fff;
-    padding: 0;
-  }
+.profailes {
+  padding: 17px 34px 18px 34px;
+}
+.profailes_btn {
+  padding: 13px 13px;
+  border: none;
+  background-color: $acsentLight;
+  font-size: 16px;
+  margin-right: 16px;
+  color: $white;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80vh;
+  color: $title;
+  background-color: #fff;
+  padding: 0;
+}
 
-  &__menu__item {
-    padding: 28px 95px 30px 95px;
-    cursor: pointer;
-    border-bottom: 1px solid #e8e8e8;
-    text-align: center;
-    &:hover {
-      color: $acsent;
-    }
-  }
-
-  &__wrapper {
-    border-top: 1px solid #e8e8e8;
-  }
-  &__img {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__img__inner {
-    padding: 28px 46px;
-    border-right: 1px solid #e8e8e8;
-    &:last-child {
-      border: none;
-    }
-  }
-
-  &__sun,
-  &__moon {
-    height: 24px;
-    width: 24px;
-    cursor: pointer;
-  }
-
-  &__log {
-    padding: 29px 87px 30px 88px;
-    background-color: $bgLog;
-    cursor: pointer;
+.item {
+  padding: 28px 95px 30px 95px;
+  cursor: pointer;
+  border-bottom: 1px solid #e8e8e8;
+  text-align: center;
+  &:hover {
+    color: $acsent;
   }
 }
+
+.wrapper {
+  border-top: 1px solid #e8e8e8;
+}
+.img {
+  display: flex;
+  justify-content: space-between;
+}
+
+.img__inner {
+  padding: 28px 46px;
+  border-right: 1px solid #e8e8e8;
+  &:last-child {
+    border: none;
+  }
+}
+
+.sun {
+  color: #313037;
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+}
+.moon {
+  color: #dadada;
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+}
+
 
 .activeBlock {
   transform: translateX(0);
@@ -78,66 +79,13 @@
   top: 81px;
   background-color: $acsent;
   border-top: 1px solid $acsentLight;
-
-  &__profailes {
-    padding: 17px 34px 18px 34px;
-  }
-  &__profailes_btn {
-    padding: 13px 13px;
-    border: none;
-    background-color: $acsentLight;
-    font-size: 16px;
-    margin-right: 16px;
-    color: $white;
-    border-radius: 2px;
-    cursor: pointer;
-  }
-  &__menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 80vh;
-    color: $title;
-    background-color: #fff;
-    padding: 0;
-  }
-
-  &__menu__item {
-    padding: 28px 95px 30px 95px;
-    cursor: pointer;
-    border-bottom: 1px solid #e8e8e8;
-    text-align: center;
-    &:hover {
-      color: $acsent;
-    }
-  }
-
-  &__wrapper {
-    border-top: 1px solid #e8e8e8;
-  }
-  &__img {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__img__inner {
-    padding: 28px 46px;
-    border-right: 1px solid #e8e8e8;
-    &:last-child {
-      border: none;
-    }
-  }
-
-  &__sun,
-  &__moon {
-    height: 24px;
-    width: 24px;
-    cursor: pointer;
-  }
-
-  &__log {
-    padding: 29px 87px 30px 88px;
-    background-color: $bgLog;
-    cursor: pointer;
-  }
 }
+
+.bodyMon {
+  color: #313037;
+ 
+}
+
+
+
+

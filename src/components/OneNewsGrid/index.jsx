@@ -1,3 +1,4 @@
+ //@ts-ignore
 import ControlNews from '../ControlNews';
 import styles from './OneNewsGrid.module.scss';
 import images from '../../assets/img/Rectangle39.png';
