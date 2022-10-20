@@ -1,7 +1,7 @@
 import Categories from '../Categiries/index';
 import OneNews from '../OneNews/index';
 import OneNewsAside from '../OneNewsAside/index';
-function Main() {
+const Main: React.FC = () => {
   return (
     <main>
       <h1>Blog</h1>
@@ -21,6 +21,6 @@ function Main() {
       </div>
     </main>
   );
-}
+};
 
 export default Main;

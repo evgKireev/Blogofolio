@@ -5,7 +5,7 @@ import ControlNews from '../ControlNews';
 import OneNewsGrid from '../OneNewsGrid';
 import { useAppSelector } from '../../redux/hooks';
 import classNames from 'classnames';
-function OneNews() {
+const OneNews: React.FC = () => {
   const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
   return (
     <div>
@@ -44,6 +44,6 @@ function OneNews() {
       </div>
     </div>
   );
-}
+};
 
 export default OneNews;

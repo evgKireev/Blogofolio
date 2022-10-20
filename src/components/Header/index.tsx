@@ -1,16 +1,17 @@
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { BiSearch } from 'react-icons/bi';
 import styles from './Header.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch } from '../../redux/hooks';
+import { useAppSelector } from '../../redux/hooks';
 import { setValueMenu, setValueCloseInput } from '../../redux/home/menuSlice';
+import { setInputSearch } from '../../redux/home/inputSlice';
 import Menu from '../Menu';
 import UserControl from '../UserControl';
-import { useRef } from 'react';
 
-function Header() {
-  const dispath = useDispatch();
-  const valueMenu = useSelector((state) => state.menuSlice.valueMenu);
-  const valueCloseInput = useSelector(
+const Header: React.FC = () => {
+  const dispath = useAppDispatch();
+  const valueMenu = useAppSelector((state) => state.menuSlice.valueMenu);
+  const valueCloseInput = useAppSelector(
     (state) => state.menuSlice.valueCloseInput
   );
 
@@ -33,6 +34,9 @@ function Header() {
           />
         )}
         <input
+          onChange={(e) => {
+            dispath(setInputSearch(e.target.value));
+          }}
           className={
             valueCloseInput
               ? `${noneBlockSearc} ${activeSearch}`
@@ -55,6 +59,6 @@ function Header() {
       <Menu />
     </header>
   );
-}
+};
 
 export default Header;

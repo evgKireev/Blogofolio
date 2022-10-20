@@ -1,9 +1,10 @@
 import ReactPaginate from 'react-paginate';
 import styles from './Pogination.module.scss';
-function Pogination() {
+const Pogination: React.FC = () => {
   return (
     <>
-      <ReactPaginate className={styles.items}
+      <ReactPaginate
+        className={styles.items}
         pageClassName={styles.item}
         pageLinkClassName="page-link"
         previousClassName={styles.previous__item}
@@ -24,6 +25,6 @@ function Pogination() {
       />
     </>
   );
-}
+};
 
 export default Pogination;
