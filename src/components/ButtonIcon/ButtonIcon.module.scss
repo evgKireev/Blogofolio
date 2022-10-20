@@ -1,0 +1,29 @@
+@import '../../scss/vars';
+.buttonIcon {
+  display: flex;
+  align-items: center;
+  padding: 16px 32px;
+  border: none;
+  cursor: pointer;
+  background-color: $gLog;
+  transition: all 0.5s;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  &:hover {
+    background-color: $acsentLight;
+    color: white;
+    transition: all 0.5s;
+  }
+  svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+}
+
+.disabled {
+  background-color: $bgLog;
+  color: $text;
+  pointer-events: none;
+}

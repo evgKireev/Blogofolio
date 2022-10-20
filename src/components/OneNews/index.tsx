@@ -1,47 +1,47 @@
-//@ts-ignore
 import styles from './OneNews.module.scss';
-import images from '..//../assets/img/Rectangle39.png';
 import ControlNews from '../ControlNews';
-import OneNewsGrid from '../OneNewsGrid';
 import { useAppSelector } from '../../redux/hooks';
 import classNames from 'classnames';
-const OneNews: React.FC = () => {
+
+export enum oneNewsBlock {
+  DefaultBlock = 'defaultblock',
+  GridBlock = 'gridblock',
+  AsideBlock = 'asideblock',
+}
+
+export type oneNewType = {
+  type: oneNewsBlock;
+  title: string;
+  dateNews: string;
+  text?: string;
+  images: string;
+  className: string;
+};
+
+const OneNews: React.FC<oneNewType> = ({
+  title,
+  dateNews,
+  text,
+  images,
+  type,
+}) => {
   const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
+  const stylesOneBlock = styles[type];
   return (
-    <div>
-      <div className={styles.oneNews}>
-        <div className={styles.wrapper}>
-          <div className={styles.inner}>
-            <span className={styles.subTitle}>April 20, 2021</span>
-            <h2
-              className={classNames(styles.title, {
-                [styles.bodyMon]: valueOnMon,
-              })}
-            >
-              Astronauts prep for new solar arrays on nearly seven-hour
-              spacewalk ...
-            </h2>
-            <p className={styles.text}>
-              Astronauts Kayla Barron and Raja Chari floated out of the
-              International Space Station airlock for a spacewalk Tuesday,
-              installing brackets and struts to support new solar arrays to
-              upgrade the research lab’s power system on the same day that
-              crewmate Mark Vande Hei marked his 341st day in orbit, a U.S.
-              record for a single spaceflight.
-            </p>
-          </div>
-          <div>
-            <img src={images} alt="img" />
-          </div>
+    <div className={styles.wrapper}>
+      <div className={stylesOneBlock}>
+        <div>
+          <span>{dateNews}</span>
+          <h2 className={classNames(stylesOneBlock, { bodyMon: valueOnMon })}>
+            {title}
+          </h2>
+          <p>{text}</p>
         </div>
-        <ControlNews />
+        <div className={stylesOneBlock}>
+          <img src={images} alt="img" />
+        </div>
       </div>
-      <div className={styles.grid}>
-        <OneNewsGrid />
-        <OneNewsGrid />
-        <OneNewsGrid />
-        <OneNewsGrid />
-      </div>
+      <ControlNews />
     </div>
   );
 };

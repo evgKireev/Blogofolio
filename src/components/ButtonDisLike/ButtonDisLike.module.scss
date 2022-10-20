@@ -1,0 +1,24 @@
+@import '../../scss/vars';
+.buttonDisLike {
+  padding: 16px 32px;
+  background-color: $bgLog;
+  cursor: pointer;
+  border: none;
+  transition: all 0.5s;
+  &:hover {
+    color: $white;
+    background-color: $error;
+    transition: all 0.5s;
+  }
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.disabled {
+    background-color: $bgLog;
+    color: $text;
+    pointer-events: none;
+  }
+

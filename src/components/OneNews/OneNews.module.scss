@@ -1,47 +1,118 @@
 @import '../../scss/vars.scss';
-.oneNews {
-  padding-bottom: 40.5px;
-  border-bottom: 1px solid #dadada;
-}
 .wrapper {
+  border-bottom: 1px solid #dadada;
+  padding-bottom: 39px;
+  margin-bottom: 40px;
+}
+
+
+.defaultblock {
   display: flex;
-  gap: 32px;
+  gap: 30px;
+  span {
+    font-size: 16px;
+    font-weight: 400;
+    color: #8d8e97;
+    line-height: 24px;
+  }
+  h2 {
+    margin-top: 8px;
+    margin-bottom: 24px;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 44px;
+    &:hover {
+      color: $acsent;
+      cursor: pointer;
+    }
+  }
+  p {
+    width: 448px;
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: $text;
+    margin-bottom: 31px;
+  }
+  img {
+    width: 256px;
+    height: 244px;
+  }
 }
-.inner {
-  max-width: 736px;
-}
-.subTitle {
-  font-size: 16px;
-  font-weight: 400;
-  color: #8d8e97;
-  line-height: 24px;
-}
-.title {
-  margin-top: 8px;
+
+.asideblock {
+  display: flex;
+  gap: 20px;
+  height: 116px;
   margin-bottom: 24px;
-  font-size: 32px;
-  font-weight: 700;
-  color: $title;
-  line-height: 44px;
-  &:hover {
-    color: $acsent;
-    cursor: pointer;
+  span {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #8d8e97;
+  }
+  h2 {
+    width: 222px;
+    margin-top: 8px;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+    &:hover {
+      color: $acsent;
+      cursor: pointer;
+    }
+  }
+  p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: $text;
+  }
+  img {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+.gridblock {
+  display: flex;
+  flex-direction: column-reverse;
+  span {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #8d8e97;
+  }
+  h2 {
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 24px;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+    &:hover {
+      color: $acsent;
+      cursor: pointer;
+    }
+  }
+  p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: $text;
+    margin-bottom: 32.5px;
+    
+  }
+  img {
+    margin-bottom: 24px;
+    width: 352px;
+    height: 246px;
   }
 }
 
 .bodyMon {
   color: white;
 }
-.text {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 28px;
-  color: $text;
-  margin-bottom: 32.5px;
-}
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px 32px;
-}
+

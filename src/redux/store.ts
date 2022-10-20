@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import categoriesSlice from './home/categoriesSlice';
-import likeSlece from './home/likeSlece';
 import menuSlice from './home/menuSlice';
 import inputSlice from './home/inputSlice';
+import controlsSlice from './home/controlsSlice';
 
 export const store = configureStore({
   reducer: {
     categoriesSlice,
-    likeSlece,
+    controlsSlice,
     menuSlice,
     inputSlice,
   },

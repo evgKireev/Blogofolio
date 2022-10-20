@@ -3,16 +3,25 @@ import { useAppSelector } from '../../redux/hooks';
 import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
 import { BsBookmark, BsBookmarkFill, BsThreeDots } from 'react-icons/bs';
 import styles from './ControlNews.module.scss';
-
-import { setLikeDecrement, setLikeIncrement } from '../../redux/home/likeSlece';
 import classNames from 'classnames';
+import DropdawnList from '../DropdawnList';
+
+import {
+  setLikeDecrement,
+  setLikeIncrement,
+  setDropdawn,
+} from '../../redux/home/controlsSlice';
 
 const ControlNews: React.FC = () => {
   const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
-  const valueLikeInc = useAppSelector((state) => state.likeSlece.likeIncrement);
-  const valueLikeDec = useAppSelector((state) => state.likeSlece.likeDecrement);
+  const valueLikeInc = useAppSelector(
+    (state) => state.controlsSlice.likeIncrement
+  );
+  const valueLikeDec = useAppSelector(
+    (state) => state.controlsSlice.likeDecrement
+  );
+  const valueDropdawn = useAppSelector((state) => state.controlsSlice.dropdawn);
   const dispatch = useAppDispatch();
-
   return (
     <div className={styles.control}>
       <div>
@@ -52,7 +61,10 @@ const ControlNews: React.FC = () => {
           />
         </button>
         {/* <BsBookmarkFill />  */}
-        <button className={styles.btn} type="submit">
+        <button
+          className={styles.btn}
+          type="submit"
+        >
           <BsThreeDots
             className={classNames(styles.btn, {
               [styles.bodyMon]: valueOnMon,
@@ -60,6 +72,7 @@ const ControlNews: React.FC = () => {
           />
         </button>
       </div>
+      <DropdawnList valueDropdawn={valueDropdawn} />
     </div>
   );
 };
