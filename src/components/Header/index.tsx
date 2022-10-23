@@ -7,6 +7,7 @@ import { setValueMenu, setValueCloseInput } from '../../redux/home/menuSlice';
 import { setInputSearch } from '../../redux/home/inputSlice';
 import Menu from '../Menu';
 import UserControl from '../UserControl';
+import { useRef } from 'react';
 
 const Header: React.FC = () => {
   const dispath = useAppDispatch();
@@ -17,9 +18,11 @@ const Header: React.FC = () => {
 
   const activeSearch = styles.inner__search__block__active;
   const noneBlockSearc = styles.inner__search__block__input;
+  const btnRef = useRef(null);
   return (
     <header className={styles.inner}>
       <button
+        ref={btnRef}
         onClick={() => dispath(setValueMenu(!valueMenu))}
         className={styles.inner__menu}
         type="submit"
@@ -56,7 +59,7 @@ const Header: React.FC = () => {
         </button>
         <UserControl userName="Artem Malkin" onClick={() => console.log(1)} />
       </div>
-      <Menu />
+      <Menu btnRef={btnRef} />
     </header>
   );
 };

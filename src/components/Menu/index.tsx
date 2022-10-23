@@ -10,15 +10,37 @@ import Buttons from '../Buttons';
 import { ButtonType } from '../Buttons';
 import { useEffect, useRef } from 'react';
 
+type menuType = {
+  btnRef: { current: null };
+};
 
-const Menu: React.FC = () => {
+const Menu: React.FC<menuType> = ({ btnRef }) => {
   const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
   const valueMenu = useAppSelector((state) => state.menuSlice.valueMenu);
   const dispath = useAppDispatch();
+  const menuRef = useRef(null);
 
- 
+  useEffect(() => {
+    const eventMenu = (e: MouseEvent) => {
+      const _e = e as MouseEvent & {
+        path: null[];
+      };
+      if (
+        !_e.path.includes(menuRef.current) &&
+        !_e.path.includes(btnRef.current)
+      ) {
+        dispath(setValueMenu(false));
+      }
+    };
+    document.body.addEventListener('click', eventMenu);
+    return () => {
+      document.body.removeEventListener('click', eventMenu);
+    };
+  }, []);
+
   return (
     <div
+      ref={menuRef}
       className={valueMenu ? styles.activeBlock : styles.inner}
     >
       <UserControl
@@ -33,7 +55,10 @@ const Menu: React.FC = () => {
         <div className={styles.wrapper}>
           <div className={styles.img}>
             <div
-              onClick={() => dispath(setValueOnMon(false))}
+              onClick={() => {
+                dispath(setValueOnMon(false));
+                dispath(setValueMenu(false));
+              }}
               className={styles.img__inner}
             >
               <BsSun
@@ -43,7 +68,10 @@ const Menu: React.FC = () => {
               />
             </div>
             <div
-              onClick={() => dispath(setValueOnMon(true))}
+              onClick={() => {
+                dispath(setValueOnMon(true));
+                dispath(setValueMenu(false));
+              }}
               className={styles.img__inner}
             >
               <BiMoon
@@ -57,7 +85,10 @@ const Menu: React.FC = () => {
           <Buttons
             className="secondary"
             title="Log Out"
-            onClick={() => console.log('Log Out')}
+            onClick={() => {
+              console.log('Log Out');
+              dispath(setValueMenu(false));
+            }}
             type={ButtonType.Secondary}
             disabled={false}
           />
