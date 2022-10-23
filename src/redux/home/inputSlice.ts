@@ -5,6 +5,7 @@ const inputSlice = createSlice({
   initialState: {
     inputSearch: '',
     inputUser: '',
+    inputFile: 'Файл не выбран',
   },
   reducers: {
     setInputSearch: (state, actions: PayloadAction<string>) => {
@@ -15,8 +16,12 @@ const inputSlice = createSlice({
     setInputUser: (state, actions: PayloadAction<string>) => {
       state.inputUser = actions.payload;
     },
+
+    setInputFile: (state, actions: PayloadAction<string>) => {
+      state.inputFile = actions.payload;
+    },
   },
 });
 
-export const { setInputSearch, setInputUser } = inputSlice.actions;
+export const { setInputSearch, setInputUser, setInputFile } = inputSlice.actions;
 export default inputSlice.reducer;

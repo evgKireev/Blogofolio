@@ -61,19 +61,21 @@
     overflow: hidden;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    flex-basis: 1522px;
+    // flex-basis: 1522px;
+    width: 100%;
     &__closes {
+      transition: all 0.5s;
       z-index: 1;
       position: absolute;
       width: 24px;
       height: 24px;
-      right: 33px;
+      right: 370px;
       top: 28px;
       cursor: pointer;
     }
 
     &__input {
-      transform: translateX(2000px);
+      transform: translateX(5500px);
       transition: all 0.5s;
       background-color: $acsentLight;
       width: 0;

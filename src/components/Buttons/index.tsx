@@ -11,7 +11,7 @@ export enum ButtonType {
 export type typeButton = {
   title: string;
   type: ButtonType;
-  onClick: () => void;
+  onClick?: () => void;
   className: string;
   disabled?: boolean;
   error?: string;

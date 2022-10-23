@@ -1,0 +1,65 @@
+@import './/../../scss/vars';
+.inputInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $white;
+  border-radius: 2px;
+  width: 543px;
+  padding: 2px;
+  height: 56px;
+}
+
+.input {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  position: absolute;
+}
+
+.title {
+  position: relative;
+  padding-left: 20px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: $text;
+}
+
+.btn {
+  padding: 16px 30px 12px 32px;
+  background-color: #f3f3f3;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  &:hover {
+    cursor: pointer;
+    background-color: $bgLog;
+  }
+}
+
+.closes {
+  display: none;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  color: $error;
+  right: -33px;
+  top: -2px;
+  cursor: pointer;
+}
+
+.closesActive {
+  display: block;
+}
+
+.disabled {
+    background-color: $bgLog;
+    color: $text;
+    pointer-events: none;
+  }
+
+  .error{
+    color:$error
+  }

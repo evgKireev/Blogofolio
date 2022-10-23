@@ -4,6 +4,7 @@ import images from '../../assets/img/Rectangle39.png';
 import { oneNewsBlock } from '../OneNews/index';
 import ButtonLike from '../ButtonLike';
 import ButtonDisLike from '../ButtonDisLike';
+import InputFile from '../InputFile';
 const Main: React.FC = () => {
   return (
     <main>
