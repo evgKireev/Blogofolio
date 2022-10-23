@@ -10,7 +10,6 @@ const inputSlice = createSlice({
   reducers: {
     setInputSearch: (state, actions: PayloadAction<string>) => {
       state.inputSearch = actions.payload;
-      state.inputSearch = '';
     },
 
     setInputUser: (state, actions: PayloadAction<string>) => {

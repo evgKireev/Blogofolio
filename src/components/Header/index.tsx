@@ -7,7 +7,7 @@ import { setValueMenu, setValueCloseInput } from '../../redux/home/menuSlice';
 import { setInputSearch } from '../../redux/home/inputSlice';
 import Menu from '../Menu';
 import UserControl from '../UserControl';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const Header: React.FC = () => {
   const dispath = useAppDispatch();
@@ -15,10 +15,32 @@ const Header: React.FC = () => {
   const valueCloseInput = useAppSelector(
     (state) => state.menuSlice.valueCloseInput
   );
+  const inputSearch = useAppSelector((state) => state.inputSlice.inputSearch);
 
   const activeSearch = styles.inner__search__block__active;
   const noneBlockSearc = styles.inner__search__block__input;
   const btnRef = useRef(null);
+  const searchRef = useRef(null);
+  const btnSearchRef = useRef(null);
+
+  useEffect(() => {
+    const eventSearch = (e: MouseEvent) => {
+      const _e = e as MouseEvent & {
+        path: null[];
+      };
+      if (
+        !_e.path.includes(searchRef.current) &&
+        !_e.path.includes(btnSearchRef.current)
+      ) {
+        dispath(setValueCloseInput(false));
+      }
+    };
+    document.body.addEventListener('click', eventSearch);
+    return () => {
+      document.body.removeEventListener('click', eventSearch);
+    };
+  }, []);
+
   return (
     <header className={styles.inner}>
       <button
@@ -29,7 +51,7 @@ const Header: React.FC = () => {
       >
         {valueMenu ? <AiOutlineClose /> : <AiOutlineMenu />}
       </button>
-      <div className={styles.inner__search__block}>
+      <div ref={searchRef} className={styles.inner__search__block}>
         {valueCloseInput && (
           <AiOutlineClose
             onClick={() => dispath(setValueCloseInput(false))}
@@ -37,6 +59,7 @@ const Header: React.FC = () => {
           />
         )}
         <input
+          value={inputSearch}
           onChange={(e) => {
             dispath(setInputSearch(e.target.value));
           }}
@@ -51,7 +74,11 @@ const Header: React.FC = () => {
       </div>
       <div className={styles.inner__block}>
         <button
-          onClick={() => dispath(setValueCloseInput(!valueCloseInput))}
+          ref={btnSearchRef}
+          onClick={() => {
+            dispath(setValueCloseInput(!valueCloseInput));
+            dispath(setInputSearch(''));
+          }}
           className={styles.inner__search}
           type="submit"
         >
