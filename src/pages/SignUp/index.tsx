@@ -10,6 +10,7 @@ import { setSignUpPassword } from '../../redux/Sign/formSlice';
 import { setSignUpPasswordConfirm } from '../../redux/Sign/formSlice';
 
 import styles from './SignUp.module.scss';
+import { Link } from 'react-router-dom';
 
 const SignUp: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -35,24 +36,24 @@ const SignUp: React.FC = () => {
             placeholder="Your password"
             title="Password"
             type={InputType.Default}
-            className={styles.input}
+            className={InputType.Default}
             onChange={(e) => dispatch(setSignUpPassword(e.target.value))}
           />
           <Input
             placeholder="Confirm password"
             title="Confirm password"
             type={InputType.Default}
-            className={styles.input}
+            className={InputType.Default}
             onChange={(e) => dispatch(setSignUpPasswordConfirm(e.target.value))}
           />
         </div>
         <Buttons
           type={ButtonType.Primary}
           title={'Sign Up'}
-          className={'primary'}
+          className={styles.btn}
         />
         <div className={styles.desc}>
-          Don’t have an account? <span className={styles.span}>Sign In</span>
+          Don’t have an account? <Link to='../signIn'><span className={styles.span}>Sign In</span></Link>
         </div>
       </>
     </FormContainer>

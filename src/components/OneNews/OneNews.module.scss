@@ -1,10 +1,4 @@
 @import '../../scss/vars.scss';
-.wrapper {
-  border-bottom: 1px solid #dadada;
-  padding-bottom: 39px;
-  margin-bottom: 40px;
-}
-
 
 .defaultblock {
   display: flex;
@@ -21,7 +15,10 @@
     font-size: 32px;
     font-weight: 700;
     line-height: 44px;
+    transition: all 0.5s;
     &:hover {
+      transition: all 0.5s;
+
       color: $acsent;
       cursor: pointer;
     }
@@ -58,7 +55,11 @@
     font-size: 18px;
     line-height: 28px;
     font-weight: 600;
+    transition: all 0.5s;
+
     &:hover {
+      transition: all 0.5s;
+
       color: $acsent;
       cursor: pointer;
     }
@@ -102,7 +103,7 @@
     line-height: 28px;
     color: $text;
     margin-bottom: 32.5px;
-    
+
   }
   img {
     margin-bottom: 24px;
@@ -110,9 +111,4 @@
     height: 246px;
   }
 }
-
-.bodyMon {
-  color: white;
-}
-
 

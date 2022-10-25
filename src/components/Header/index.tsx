@@ -1,13 +1,14 @@
+import { useEffect, useRef } from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
-import { BiSearch } from 'react-icons/bi';
-import styles from './Header.module.scss';
+import { BiSearch, BiUser } from 'react-icons/bi';
 import { useAppDispatch } from '../../redux/hooks';
 import { useAppSelector } from '../../redux/hooks';
 import { setValueMenu, setValueCloseInput } from '../../redux/home/menuSlice';
 import { setInputSearch } from '../../redux/home/inputSlice';
 import Menu from '../Menu';
 import UserControl from '../UserControl';
-import { useEffect, useRef } from 'react';
+import styles from './Header.module.scss';
+import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const dispath = useAppDispatch();
@@ -22,7 +23,7 @@ const Header: React.FC = () => {
   const btnRef = useRef(null);
   const searchRef = useRef(null);
   const btnSearchRef = useRef(null);
-
+  const registered = false;
   useEffect(() => {
     const eventSearch = (e: MouseEvent) => {
       const _e = e as MouseEvent & {
@@ -52,12 +53,12 @@ const Header: React.FC = () => {
         {valueMenu ? <AiOutlineClose /> : <AiOutlineMenu />}
       </button>
       <div ref={searchRef} className={styles.inner__search__block}>
-        {valueCloseInput && (
+        {/* {valueCloseInput && (
           <AiOutlineClose
             onClick={() => dispath(setValueCloseInput(false))}
             className={styles.inner__search__block__closes}
           />
-        )}
+        )} */}
         <input
           value={inputSearch}
           onChange={(e) => {
@@ -84,7 +85,15 @@ const Header: React.FC = () => {
         >
           <BiSearch />
         </button>
-        <UserControl userName="Artem Malkin" onClick={() => console.log(1)} />
+        {registered ? (
+          <UserControl userName="Artem Malkin" />
+        ) : (
+          <div className={styles.inner__user}>
+            <Link to="signIn">
+              <BiUser />
+            </Link>
+          </div>
+        )}
       </div>
       <Menu btnRef={btnRef} />
     </header>

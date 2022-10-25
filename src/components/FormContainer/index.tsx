@@ -1,7 +1,8 @@
-import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 import { ReactElement } from 'react';
 import { useAppSelector } from '../../redux/hooks';
 import styles from './FormContainer.module.scss';
+import classNames from 'classnames';
 
 type FormContainerType = {
   title: string;
@@ -12,12 +13,12 @@ const FormContainer: React.FC<FormContainerType> = ({ title, children }) => {
   const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
   return (
     <div>
-      <a
+      <Link
+        to=".."
         className={classNames(styles.link, { [styles.bodyMon]: valueOnMon })}
-        href=""
       >
         Back to home
-      </a>
+      </Link>
       <h1>{title}</h1>
       <div className={styles.form}>{children}</div>
     </div>

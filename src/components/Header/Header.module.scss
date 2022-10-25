@@ -33,8 +33,34 @@
       color: $white;
       width: 25px;
       height: 21px;
+      transition: all 0.5s;
+
+      &:hover {
+        color: $acsentLight;
+        transition: all 0.5s;
+      }
     }
   }
+
+  &__user {
+    padding: 28px 36px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    svg {
+      color: $white;
+      width: 25px;
+      height: 21px;
+      transition: all 0.5s;
+
+      &:hover {
+        color: $acsentLight;
+        transition: all 0.5s;
+      }
+    }
+  }
+
   &__block {
     z-index: 1;
     background-color: $acsent;
@@ -74,7 +100,7 @@
 
     &__input {
       transform: translateX(5500px);
-      transition: all .9s;
+      transition: all 0.9s;
       background-color: $acsentLight;
       width: 0;
       height: 84px;
@@ -90,7 +116,7 @@
 
     &__active {
       transform: translateX(0px);
-      transition: all .9s;
+      transition: all 0.9s;
       width: 100%;
     }
   }

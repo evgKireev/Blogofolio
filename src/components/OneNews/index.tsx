@@ -24,17 +24,16 @@ const OneNews: React.FC<oneNewType> = ({
   text,
   images,
   type,
+  className,
 }) => {
   const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
   const stylesOneBlock = styles[type];
   return (
-    <div className={styles.wrapper}>
-      <div className={stylesOneBlock}>
+    <>
+      <div className={classNames(stylesOneBlock, className)}>
         <div>
           <span>{dateNews}</span>
-          <h2 className={classNames(stylesOneBlock, { bodyMon: valueOnMon })}>
-            {title}
-          </h2>
+          <h2 className={classNames(stylesOneBlock)}>{title}</h2>
           <p>{text}</p>
         </div>
         <div className={stylesOneBlock}>
@@ -42,7 +41,7 @@ const OneNews: React.FC<oneNewType> = ({
         </div>
       </div>
       <ControlNews />
-    </div>
+    </>
   );
 };
 

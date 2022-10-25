@@ -1,6 +1,5 @@
 @import '../../scss/vars';
 .buttons {
-  width: 100%;
   padding: 16px 32px;
   border-radius: 2px;
   border: none;
@@ -14,25 +13,37 @@
 .primary {
   background-color: $acsent;
   color: #fff;
+  transition: all 0.5s;
+
   &:hover {
     background-color: $acsentLight;
+    transition: all 0.5s;
   }
 }
 
 .secondary {
   background-color: $bgLog;
+  transition: all 0.5s;
   color: $title;
+
   &:hover {
     background-color: #dadada;
+    transition: all 0.5s;
   }
 }
 
 .error {
+  border: 1px solid transparent;
   background-color: transparent;
   color: $error;
+  transition: all 0.5s;
+  line-height: 24px;
+
   &:hover {
     border: 1px solid #dadada;
     line-height: 23px;
+    transition: all 0.5s;
+    line-height: 24px;
   }
 }
 
@@ -45,4 +56,3 @@
     background-color: transparent;
   }
 }
-

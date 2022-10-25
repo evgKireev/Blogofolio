@@ -1,7 +1,7 @@
 import styles from './UserControl.module.scss';
 type userNameType = {
   userName: string;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 const UserControl: React.FC<userNameType> = ({ userName, onClick }) => {

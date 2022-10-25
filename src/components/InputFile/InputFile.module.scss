@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: space-between;
   background-color: $white;
+  margin-top: 8px;
   border-radius: 2px;
   width: 543px;
   padding: 2px;
@@ -55,11 +56,11 @@
 }
 
 .disabled {
-    background-color: $bgLog;
-    color: $text;
-    pointer-events: none;
-  }
+  background-color: $bgLog;
+  color: $text;
+  pointer-events: none;
+}
 
-  .error{
-    color:$error
-  }
+.error {
+  color: $error;
+}

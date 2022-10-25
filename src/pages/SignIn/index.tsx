@@ -1,4 +1,5 @@
 import FormContainer from '../../components/FormContainer';
+import { Link } from 'react-router-dom';
 import Input, { InputType } from '../../components/Input';
 import Buttons, { ButtonType } from '../../components/Buttons';
 
@@ -38,10 +39,13 @@ const SignIn: React.FC = () => {
         <Buttons
           type={ButtonType.Primary}
           title={'Sign In'}
-          className={'primary'}
+          className={styles.btn}
         />
         <div className={styles.desc}>
-          Don’t have an account? <span className={styles.span}>Sign Up</span>
+          Don’t have an account?{' '}
+          <Link to="../signUp">
+            <span className={styles.span}>Sign Up</span>
+          </Link>
         </div>
       </>
     </FormContainer>

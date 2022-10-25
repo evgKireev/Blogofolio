@@ -11,7 +11,7 @@ const Main: React.FC = () => {
       <Categories />
       <div className={styles.container__inner}>
         <div>
-          <div>
+          <div className={styles.bigNews}>
             <OneNews
               type={oneNewsBlock.DefaultBlock}
               className={oneNewsBlock.DefaultBlock}
@@ -21,81 +21,102 @@ const Main: React.FC = () => {
               dateNews="April 20, 2021"
             />
           </div>
-          <div className={styles.gridBlock}>
+
+          <div className={styles.blockGrid}>
+            <div className={styles.gridNews}>
+              <OneNews
+                type={oneNewsBlock.GridBlock}
+                className={oneNewsBlock.GridBlock}
+                images={images}
+                title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
+                dateNews="April 20, 2021"
+              />
+            </div>
+            <div className={styles.gridNews}>
+              <OneNews
+                type={oneNewsBlock.GridBlock}
+                className={oneNewsBlock.GridBlock}
+                images={images}
+                title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
+                dateNews="April 20, 2021"
+              />
+            </div>
+            <div className={styles.gridNews}>
+              <OneNews
+                type={oneNewsBlock.GridBlock}
+                className={oneNewsBlock.GridBlock}
+                images={images}
+                title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
+                dateNews="April 20, 2021"
+              />
+            </div>
+            <div className={styles.gridNews}>
+              <OneNews
+                type={oneNewsBlock.GridBlock}
+                className={oneNewsBlock.GridBlock}
+                images={images}
+                title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
+                dateNews="April 20, 2021"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div className={styles.asignNews}>
             <OneNews
-              type={oneNewsBlock.GridBlock}
-              className={oneNewsBlock.GridBlock}
-              images={images}
-              title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
-              dateNews="April 20, 2021"
-            />
-            <OneNews
-              type={oneNewsBlock.GridBlock}
-              className={oneNewsBlock.GridBlock}
-              images={images}
-              title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
-              dateNews="April 20, 2021"
-            />
-            <OneNews
-              type={oneNewsBlock.GridBlock}
-              className={oneNewsBlock.GridBlock}
-              images={images}
-              title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
-              dateNews="April 20, 2021"
-            />
-            <OneNews
-              type={oneNewsBlock.GridBlock}
-              className={oneNewsBlock.GridBlock}
+              type={oneNewsBlock.AsideBlock}
+              className={oneNewsBlock.AsideBlock}
               images={images}
               title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
               dateNews="April 20, 2021"
             />
           </div>
-        </div>
-
-        <div>
-          <OneNews
-            type={oneNewsBlock.AsideBlock}
-            className={oneNewsBlock.AsideBlock}
-            images={images}
-            title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
-            dateNews="April 20, 2021"
-          />
-          <OneNews
-            type={oneNewsBlock.AsideBlock}
-            className={oneNewsBlock.AsideBlock}
-            images={images}
-            title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
-            dateNews="April 20, 2021"
-          />
-          <OneNews
-            type={oneNewsBlock.AsideBlock}
-            className={oneNewsBlock.AsideBlock}
-            images={images}
-            title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
-            dateNews="April 20, 2021"
-          />
-          <OneNews
-            type={oneNewsBlock.AsideBlock}
-            className={oneNewsBlock.AsideBlock}
-            images={images}
-            title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
-            dateNews="April 20, 2021"
-          />
-          <OneNews
-            type={oneNewsBlock.AsideBlock}
-            className={oneNewsBlock.AsideBlock}
-            images={images}
-            title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
-            dateNews="April 20, 2021"
-          />
-          <OneNews
-            type={oneNewsBlock.AsideBlock}
-            className={oneNewsBlock.AsideBlock}
-            images={images}
-            title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
-            dateNews="April 20, 2021"
-          />
+          <div className={styles.asignNews}>
+            <OneNews
+              type={oneNewsBlock.AsideBlock}
+              className={oneNewsBlock.AsideBlock}
+              images={images}
+              title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
+              dateNews="April 20, 2021"
+            />
+          </div>
+          <div className={styles.asignNews}>
+            <OneNews
+              type={oneNewsBlock.AsideBlock}
+              className={oneNewsBlock.AsideBlock}
+              images={images}
+              title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
+              dateNews="April 20, 2021"
+            />
+          </div>
+          <div className={styles.asignNews}>
+            <OneNews
+              type={oneNewsBlock.AsideBlock}
+              className={oneNewsBlock.AsideBlock}
+              images={images}
+              title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
+              dateNews="April 20, 2021"
+            />
+          </div>
+          <div className={styles.asignNews}>
+            <OneNews
+              type={oneNewsBlock.AsideBlock}
+              className={oneNewsBlock.AsideBlock}
+              images={images}
+              title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
+              dateNews="April 20, 2021"
+            />
+          </div>
+          <div className={styles.asignNews}>
+            <OneNews
+              type={oneNewsBlock.AsideBlock}
+              className={oneNewsBlock.AsideBlock}
+              images={images}
+              title="Astronauts prep for new solar arrays on nearly seven-hour spacewalk"
+              dateNews="April 20, 2021"
+            />
+          </div>
         </div>
         <Pogination />
       </div>

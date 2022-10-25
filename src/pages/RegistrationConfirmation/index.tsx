@@ -18,7 +18,7 @@ const RegistrationConfirmation: React.FC = () => {
         <Buttons
           type={ButtonType.Primary}
           title={'Go to home'}
-          className={'primary'}
+          className={styles.btn}
         />
       </>
     </FormContainer>

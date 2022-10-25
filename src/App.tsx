@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Main from './components/Main';
 import RegistrationConfirmation from './pages/RegistrationConfirmation';
 import Success from './pages/Success';
+import AddPost from './pages/addPost';
 import './scss/app.scss';
 
 const App: React.FC = () => {
@@ -29,6 +30,7 @@ const App: React.FC = () => {
             element={<RegistrationConfirmation />}
           />
           <Route path="success" element={<Success />} />
+          <Route path="addPost" element={<AddPost />} />
           <Route path="*" element={<h1>No Found</h1>} />
         </Route>
       </Routes>

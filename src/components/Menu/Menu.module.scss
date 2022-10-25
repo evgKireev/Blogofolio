@@ -26,13 +26,20 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 75vh;
+  height: 71vh;
   color: $title;
   background-color: #fff;
   padding: 0;
 }
 
+.menuBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .item {
+  color: #313037;
   padding: 28px 95px 30px 95px;
   cursor: pointer;
   border-bottom: 1px solid #e8e8e8;
@@ -86,5 +93,11 @@
 }
 
 .btn {
-  padding: 29px 87px 33px 80px;
+  padding: 29px 87px 33px 89px;
+  width: 100%;
+}
+
+
+.active {
+  color: $acsent;
 }
