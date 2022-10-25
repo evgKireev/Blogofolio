@@ -1,6 +1,7 @@
 @import '../../scss/vars';
 .buttons {
-  padding: 29px 89px 30px 90px;
+  width: 100%;
+  padding: 16px 32px;
   border-radius: 2px;
   border: none;
   cursor: pointer;
@@ -45,6 +46,3 @@
   }
 }
 
-.menu {
-  padding: 29px 87px 30px 88px;
-}

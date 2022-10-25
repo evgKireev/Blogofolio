@@ -2,15 +2,14 @@ import Categories from '../Categiries/index';
 import OneNews from '../OneNews/index';
 import images from '../../assets/img/Rectangle39.png';
 import { oneNewsBlock } from '../OneNews/index';
-import ButtonLike from '../ButtonLike';
-import ButtonDisLike from '../ButtonDisLike';
-import InputFile from '../InputFile';
+import Pogination from '../Pogination';
+import styles from './Main.module.scss';
 const Main: React.FC = () => {
   return (
     <main>
       <h1>Blog</h1>
       <Categories />
-      <div className="container__inner">
+      <div className={styles.container__inner}>
         <div>
           <div>
             <OneNews
@@ -22,7 +21,7 @@ const Main: React.FC = () => {
               dateNews="April 20, 2021"
             />
           </div>
-          <div className="gridBlock">
+          <div className={styles.gridBlock}>
             <OneNews
               type={oneNewsBlock.GridBlock}
               className={oneNewsBlock.GridBlock}
@@ -98,6 +97,7 @@ const Main: React.FC = () => {
             dateNews="April 20, 2021"
           />
         </div>
+        <Pogination />
       </div>
     </main>
   );

@@ -1,0 +1,21 @@
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  
+  
+  .desc {
+    text-align: center;
+    font-weight: 400;
+    line-height: 20px;
+    margin-top: 24px;
+    color: #8d8e97;
+  }
+  
+  .span {
+    color: #2231aa;
+    cursor: pointer;
+  }
+  

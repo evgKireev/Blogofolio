@@ -1,25 +1,37 @@
-import './scss/app.scss';
-import Header from './components/Header';
-import Home from './pages/Home';
-import Footer from './components/Fotter';
-import Pogination from './components/Pogination';
 import { useAppSelector } from './redux/hooks';
+import { Route, Routes } from 'react-router-dom';
+
 import classNames from 'classnames';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import Home from './pages/Home';
+import Main from './components/Main';
+import RegistrationConfirmation from './pages/RegistrationConfirmation';
+import Success from './pages/Success';
+import './scss/app.scss';
 
 const App: React.FC = () => {
   const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
   return (
-    <div className="">
-      <Header />
-      <div
-        className={classNames(valueOnMon ? { bodyMon: valueOnMon } : 'bodySun')}
-      >
-        <div className="container">
-          <Home />
-          <Pogination />
-          <Footer />
-        </div>
-      </div>
+    <div
+      className={classNames(
+        'app',
+        valueOnMon ? { bodyMon: valueOnMon } : 'bodySun'
+      )}
+    >
+      <Routes>
+        <Route path="/" element={<Home />}>
+          <Route index element={<Main />} />
+          <Route path="signIn" element={<SignIn />} />
+          <Route path="signUp" element={<SignUp />} />
+          <Route
+            path="registrationConfirmation"
+            element={<RegistrationConfirmation />}
+          />
+          <Route path="success" element={<Success />} />
+          <Route path="*" element={<h1>No Found</h1>} />
+        </Route>
+      </Routes>
     </div>
   );
 };

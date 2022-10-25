@@ -11,9 +11,10 @@ export type typeInput = {
   title?: string;
   className: InputType;
   type: InputType;
-  value: string;
-  disabled: boolean;
+  value?: string;
+  disabled?: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
 };
 
 const Input: React.FC<typeInput> = ({
@@ -22,19 +23,22 @@ const Input: React.FC<typeInput> = ({
   value,
   type,
   disabled,
+  placeholder,
+  className,
 }) => {
   const styleInput = styles[type];
   return (
-    <>
+    <div>
       <h3>{title}</h3>
       <input
+        placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={classNames(styles.input, styleInput, {
+        className={classNames(styles.input, styleInput, className, {
           [styles.disabled]: disabled,
         })}
       ></input>
-    </>
+    </div>
   );
 };
 

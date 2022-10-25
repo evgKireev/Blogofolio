@@ -1,5 +1,4 @@
-import styles from './Menu.module.scss';
-import classNames from 'classnames';
+
 import { BsSun } from 'react-icons/bs';
 import { BiMoon } from 'react-icons/bi';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -9,6 +8,8 @@ import UserControl from '../UserControl';
 import Buttons from '../Buttons';
 import { ButtonType } from '../Buttons';
 import { useEffect, useRef } from 'react';
+import styles from './Menu.module.scss';
+import classNames from 'classnames';
 
 type menuType = {
   btnRef: { current: null };
@@ -83,7 +84,7 @@ const Menu: React.FC<menuType> = ({ btnRef }) => {
           </div>
 
           <Buttons
-            className="secondary"
+            className={styles.btn}
             title="Log Out"
             onClick={() => {
               console.log('Log Out');

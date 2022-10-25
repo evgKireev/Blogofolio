@@ -26,7 +26,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 80vh;
+  height: 75vh;
   color: $title;
   background-color: #fff;
   padding: 0;
@@ -72,7 +72,6 @@
   cursor: pointer;
 }
 
-
 .activeBlock {
   transform: translateX(0);
   transition: all 0.5s;
@@ -84,9 +83,8 @@
 
 .bodyMon {
   color: #313037;
- 
 }
 
-
-
-
+.btn {
+  padding: 29px 87px 33px 80px;
+}

@@ -1,6 +1,7 @@
 @import '../../scss/vars';
 
 .items {
+  grid-column: span 2;
   margin: 72px 0;
   font-weight: 600;
   display: flex;

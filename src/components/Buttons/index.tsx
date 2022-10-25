@@ -17,7 +17,7 @@ export type typeButton = {
   error?: string;
 };
 
-const Buttons: FC<typeButton> = ({ title, type, onClick, disabled, error }) => {
+const Buttons: FC<typeButton> = ({ title, type, onClick, disabled, error,className }) => {
   const stylesButton = styles[type];
   return (
     <>
@@ -25,6 +25,7 @@ const Buttons: FC<typeButton> = ({ title, type, onClick, disabled, error }) => {
         className={classNames(
           styles.buttons,
           stylesButton,
+          className,
           {
             [styles.disabled]: disabled,
           },

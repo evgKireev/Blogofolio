@@ -1,0 +1,13 @@
+.container__inner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:0 30px ;
+    font-size: 18px;
+    margin-top: 64px;
+  }
+  
+  .gridBlock {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 32px;
+  }

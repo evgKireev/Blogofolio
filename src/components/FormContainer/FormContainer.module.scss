@@ -1,0 +1,22 @@
+.form {
+  max-width: 624px;
+  border: 1px solid #dadada;
+  padding: 40px;
+  margin: 0 auto;
+  margin-top: 72px;
+  margin-bottom: 152px;
+}
+
+.link {
+  font-weight: 400;
+  color: #313037;
+  transition: all 0.5s;
+  &:hover {
+    color: #2231aa;
+    transition: all 0.5s;
+  }
+}
+
+.bodyMon {
+  color: white;
+}
