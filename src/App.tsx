@@ -9,6 +9,8 @@ import Main from './components/Main';
 import RegistrationConfirmation from './pages/RegistrationConfirmation';
 import Success from './pages/Success';
 import AddPost from './pages/addPost';
+import ResetPasword from './pages/ResetPasword';
+import NewPasword from './pages/NewPassword';
 import './scss/app.scss';
 
 const App: React.FC = () => {
@@ -31,6 +33,8 @@ const App: React.FC = () => {
           />
           <Route path="success" element={<Success />} />
           <Route path="addPost" element={<AddPost />} />
+          <Route path="resetPassword" element={<ResetPasword />} />
+          <Route path="newPassword" element={<NewPasword />} />
           <Route path="*" element={<h1>No Found</h1>} />
         </Route>
       </Routes>

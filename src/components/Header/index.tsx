@@ -88,11 +88,11 @@ const Header: React.FC = () => {
         {registered ? (
           <UserControl userName="Artem Malkin" />
         ) : (
-          <div className={styles.inner__user}>
-            <Link to="signIn">
+          <Link to="signIn">
+            <div className={styles.inner__user}>
               <BiUser />
-            </Link>
-          </div>
+            </div>{' '}
+          </Link>
         )}
       </div>
       <Menu btnRef={btnRef} />
