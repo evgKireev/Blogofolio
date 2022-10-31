@@ -7,26 +7,33 @@ import classNames from 'classnames';
 import DropdawnList from '../DropdawnList';
 
 import {
-  setLikeDecrement,
-  setLikeIncrement,
+  setLike,
+  setDisLike,
   setDropdawn,
 } from '../../redux/home/controlsSlice';
 
-const ControlNews: React.FC = () => {
+type controlNews = {
+  id: number;
+};
+
+const ControlNews: React.FC<controlNews> = ({ id }) => {
   const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
-  const valueLikeInc = useAppSelector(
-    (state) => state.controlsSlice.likeIncrement
-  );
-  const valueLikeDec = useAppSelector(
-    (state) => state.controlsSlice.likeDecrement
-  );
   const valueDropdawn = useAppSelector((state) => state.controlsSlice.dropdawn);
+  const card = useAppSelector((state) =>
+    state.controlsSlice.cardsData.find((el) => el.id === id)
+  );
+
+
   const dispatch = useAppDispatch();
+
+
   return (
     <div className={styles.control}>
       <div>
         <button
-          onClick={() => dispatch(setLikeIncrement(valueLikeInc + 1))}
+          onClick={() => {
+            dispatch(setLike(card));
+          }}
           className={styles.btn}
           type="submit"
         >
@@ -36,9 +43,11 @@ const ControlNews: React.FC = () => {
             })}
           />
         </button>
-        <span className={styles.span}>{valueLikeInc}</span>
+        <span className={styles.span}>{card?.like}</span>
         <button
-          onClick={() => dispatch(setLikeDecrement(valueLikeDec + 1))}
+          onClick={() => {
+            dispatch(setDisLike(card));
+          }}
           className={classNames(styles.btn, {
             [styles.bodyMon]: valueOnMon,
           })}
@@ -50,7 +59,7 @@ const ControlNews: React.FC = () => {
             })}
           />
         </button>
-        <span className={styles.span}>{valueLikeDec}</span>
+        <span className={styles.span}>{card?.disLike}</span>
       </div>
       <div>
         <button className={styles.btn} type="submit">
@@ -61,17 +70,16 @@ const ControlNews: React.FC = () => {
           />
         </button>
         {/* <BsBookmarkFill />  */}
-        <button
-          className={styles.btn}
-          type="submit"
-        >
+        <button className={styles.btn} type="submit">
           <BsThreeDots
+            onClick={() => {}}
             className={classNames(styles.btn, {
               [styles.bodyMon]: valueOnMon,
             })}
           />
         </button>
       </div>
+
       <DropdawnList valueDropdawn={valueDropdawn} />
     </div>
   );

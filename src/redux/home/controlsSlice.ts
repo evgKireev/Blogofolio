@@ -1,26 +1,37 @@
 import { createSlice } from '@reduxjs/toolkit';
+import cardsData from '../../data/cards';
 
-const likeSlice = createSlice({
-  name: 'like',
+const controlSlice = createSlice({
+  name: 'controlNews',
   initialState: {
-    likeIncrement: 0,
-    likeDecrement: 0,
     dropdawn: false,
+    cardsData,
   },
   reducers: {
-    setLikeIncrement: (state, actions) => {
-      state.likeIncrement = actions.payload;
+    setLike: (state, actions) => {
+      const cardsDataFind = state.cardsData.find(
+        (el) => el.id === actions.payload.id
+      );
+      if (cardsDataFind) {
+        cardsDataFind.like++;
+        // state.cardsData[cardsDataFind.id].like = cardsDataFind.like;
+      }
     },
-    setLikeDecrement: (state, actions) => {
-      state.likeDecrement = actions.payload;
+    setDisLike: (state, actions) => {
+      const cardsDataFind = state.cardsData.find(
+        (el) => el.id === actions.payload.id
+      );
+      if (cardsDataFind) {
+        cardsDataFind.disLike++;
+        // state.cardsData[cardsDataFind.id].like = cardsDataFind.like;
+      }
     },
     setDropdawn: (state, actions) => {
-      state.dropdawn = actions.payload;
+      state.dropdawn = actions.payload
     },
   },
 });
 
-export const { setLikeIncrement, setLikeDecrement, setDropdawn } =
-  likeSlice.actions;
+export const { setLike, setDisLike, setDropdawn } = controlSlice.actions;
 
-export default likeSlice.reducer;
+export default controlSlice.reducer;

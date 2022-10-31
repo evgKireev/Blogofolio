@@ -3,12 +3,14 @@ import styles from './DropdawnList.module.scss';
 
 export type typeDropdawn = {
   valueDropdawn: boolean;
+
 };
 
-const DropdawnList: React.FC<typeDropdawn> = ({valueDropdawn}) => {
+const DropdawnList: React.FC<typeDropdawn> = ({ valueDropdawn }) => {
   return (
     <>
       <ul
+      
         className={classNames(styles.drop, { [styles.active]: valueDropdawn })}
       >
         <li className={styles.dropItem}>Edit</li>
