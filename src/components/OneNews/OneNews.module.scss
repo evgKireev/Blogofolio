@@ -65,6 +65,7 @@
       cursor: pointer;
     }
   }
+ 
   p {
     font-weight: 400;
     font-size: 16px;
@@ -94,18 +95,22 @@
     font-size: 18px;
     line-height: 28px;
     font-weight: 600;
+    transition: all 0.5s;
+
     &:hover {
       color: $acsent;
       cursor: pointer;
+      transition: all 0.5s;
+
     }
   }
+ 
   p {
     font-weight: 400;
     font-size: 16px;
     line-height: 28px;
     color: $text;
     margin-bottom: 32.5px;
-
   }
   img {
     object-fit: cover;
@@ -115,3 +120,6 @@
   }
 }
 
+.bodyMon{
+  color: white;
+}

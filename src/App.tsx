@@ -11,6 +11,7 @@ import Success from './pages/Success';
 import AddPost from './pages/addPost';
 import ResetPasword from './pages/ResetPasword';
 import NewPasword from './pages/NewPassword';
+import OneBlog from './pages/OneBlog';
 import './scss/app.scss';
 
 const App: React.FC = () => {
@@ -35,6 +36,7 @@ const App: React.FC = () => {
           <Route path="addPost" element={<AddPost />} />
           <Route path="resetPassword" element={<ResetPasword />} />
           <Route path="newPassword" element={<NewPasword />} />
+          <Route path="one-blog/:slag" element={<OneBlog />} />
           <Route path="*" element={<h1>No Found</h1>} />
         </Route>
       </Routes>

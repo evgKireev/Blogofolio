@@ -1,0 +1,24 @@
+.container {
+  padding: 48px 64px 72px;
+}
+
+.text {
+  padding: 48px 37px 48px 35px;
+}
+
+.control {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 37px 0 35px;
+}
+
+.like {
+  display: flex;
+  gap: 8px;
+}
+
+.img {
+  width: 992px;
+  height: 518px;
+  object-fit: cover;
+}

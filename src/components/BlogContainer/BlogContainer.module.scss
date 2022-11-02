@@ -1,0 +1,39 @@
+.container {
+  height: 100%;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  li:last-child {
+    color: #8d8e97;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 23px;
+    position: relative;
+    cursor: default;
+  }
+  a {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-right: 23px;
+    position: relative;
+    cursor: pointer;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 17px;
+      background-color: #8d8e97;
+      right: -10px;
+      top: 4px;
+    }
+  }
+}
+
+.bodyMon {
+  transition: all 0.8s;
+  color: white;
+}

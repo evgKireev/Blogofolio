@@ -10,6 +10,7 @@ import { useAppDispatch } from '../../redux/hooks';
 import { setCards } from '../../redux/home/cardsSlice';
 import styles from './Main.module.scss';
 
+
 const Main: React.FC = () => {
   const cards = useAppSelector((state) => state.cardsSlice.cards);
   const dispatch = useAppDispatch();

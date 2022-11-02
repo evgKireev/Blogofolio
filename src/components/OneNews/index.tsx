@@ -1,6 +1,8 @@
-import styles from './OneNews.module.scss';
+import { Link, useParams } from 'react-router-dom';
 import ControlNews from '../ControlNews';
 import classNames from 'classnames';
+import styles from './OneNews.module.scss';
+import { useAppSelector } from '../../redux/hooks';
 
 export enum oneNewsBlock {
   DefaultBlock = 'defaultblock',
@@ -15,7 +17,7 @@ export type oneNewType = {
   date: string;
   desc?: string;
   image: string;
-  id:number
+  id: number;
 };
 
 const OneNews: React.FC<oneNewType> = ({
@@ -25,15 +27,18 @@ const OneNews: React.FC<oneNewType> = ({
   image,
   type,
   className,
-  id
+  id,
 }) => {
   const stylesOneBlock = styles[type];
+  const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
   return (
     <>
       <div className={classNames(stylesOneBlock, className)}>
         <div>
           <span>{date}</span>
-          <h2 className={classNames(stylesOneBlock)}>{title}</h2>
+          <Link to={`one-blog/${id}`} className={classNames({[styles.bodyMon]:valueOnMon})}>
+            <h2 className={classNames(stylesOneBlock)}>{title}</h2>
+          </Link>
           <p>{desc}</p>
         </div>
         <div className={stylesOneBlock}>
