@@ -1,8 +1,11 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ControlNews from '../ControlNews';
 import classNames from 'classnames';
 import styles from './OneNews.module.scss';
 import { useAppSelector } from '../../redux/hooks';
+import { useAppDispatch } from '../../redux/hooks';
+import { setDropdawn, setModalImg } from '../../redux/home/controlsSlice';
+import { CardsType } from '../../@types/cards';
 
 export enum oneNewsBlock {
   DefaultBlock = 'defaultblock',
@@ -13,39 +16,38 @@ export enum oneNewsBlock {
 export type oneNewType = {
   type: oneNewsBlock;
   className: oneNewsBlock;
-  title: string;
-  date: string;
+  card: CardsType;
   desc?: string;
-  image: string;
-  id: number;
 };
 
-const OneNews: React.FC<oneNewType> = ({
-  title,
-  date,
-  desc,
-  image,
-  type,
-  className,
-  id,
-}) => {
+const OneNews: React.FC<oneNewType> = ({ card, type, className, desc }) => {
+  const { date, text, image, id, title } = card;
   const stylesOneBlock = styles[type];
   const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
+  const dispatch = useAppDispatch();
+
   return (
     <>
       <div className={classNames(stylesOneBlock, className)}>
         <div>
           <span>{date}</span>
-          <Link to={`one-blog/${id}`} className={classNames({[styles.bodyMon]:valueOnMon})}>
+          <Link
+            to={`one-blog/${id}`}
+            className={classNames({ [styles.bodyMon]: valueOnMon })}
+          >
             <h2 className={classNames(stylesOneBlock)}>{title}</h2>
           </Link>
           <p>{desc}</p>
         </div>
         <div className={stylesOneBlock}>
-          <img src={image} alt="img" />
+          <img
+            src={image}
+            alt="img"
+            onClick={() => dispatch(setModalImg(image))}
+          />
         </div>
       </div>
-      <ControlNews id={id} />
+      <ControlNews id={id} onClickDrop={() => dispatch(setDropdawn(card))} />
     </>
   );
 };

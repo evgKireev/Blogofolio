@@ -6,34 +6,33 @@ import styles from './ControlNews.module.scss';
 import classNames from 'classnames';
 import DropdawnList from '../DropdawnList';
 
-import {
-  setLike,
-  setDisLike,
-  setDropdawn,
-} from '../../redux/home/controlsSlice';
+// import {
+//   setLike,
+//   setDisLike,
+//   setDropdawn,
+// } from '../../redux/home/controlsSlice';
 
 type controlNews = {
   id: number;
+  onClickDrop: () => void;
 };
 
-const ControlNews: React.FC<controlNews> = ({ id }) => {
+const ControlNews: React.FC<controlNews> = ({ id, onClickDrop }) => {
   const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
   const valueDropdawn = useAppSelector((state) => state.controlsSlice.dropdawn);
   const card = useAppSelector((state) =>
     state.controlsSlice.cardsData.find((el) => el.id === id)
   );
 
-
   const dispatch = useAppDispatch();
-
 
   return (
     <div className={styles.control}>
       <div>
         <button
-          onClick={() => {
-            dispatch(setLike(card));
-          }}
+          // onClick={() => {
+          //   dispatch(setLike(card));
+          // }}
           className={styles.btn}
           type="submit"
         >
@@ -45,9 +44,9 @@ const ControlNews: React.FC<controlNews> = ({ id }) => {
         </button>
         <span className={styles.span}>{card?.like}</span>
         <button
-          onClick={() => {
-            dispatch(setDisLike(card));
-          }}
+          // onClick={() => {
+          //   dispatch(setDisLike(card));
+          // }}
           className={classNames(styles.btn, {
             [styles.bodyMon]: valueOnMon,
           })}
@@ -72,15 +71,14 @@ const ControlNews: React.FC<controlNews> = ({ id }) => {
         {/* <BsBookmarkFill />  */}
         <button className={styles.btn} type="submit">
           <BsThreeDots
-            onClick={() => {}}
+            onClick={onClickDrop}
             className={classNames(styles.btn, {
               [styles.bodyMon]: valueOnMon,
             })}
           />
         </button>
       </div>
-
-      <DropdawnList valueDropdawn={valueDropdawn} />
+      {/* <DropdawnList  /> */}
     </div>
   );
 };
