@@ -5,34 +5,43 @@ import { BsBookmark, BsBookmarkFill, BsThreeDots } from 'react-icons/bs';
 import styles from './ControlNews.module.scss';
 import classNames from 'classnames';
 import DropdawnList from '../DropdawnList';
-
-// import {
-//   setLike,
-//   setDisLike,
-//   setDropdawn,
-// } from '../../redux/home/controlsSlice';
+import {
+  setbookmarkPosts,
+  setlikedStatus,
+} from '../../redux/home/controlsSlice';
+import { CardsType, LikeStatus } from '../../@types/cards';
 
 type controlNews = {
-  id: number;
+  card: CardsType;
   onClickDrop: () => void;
 };
 
-const ControlNews: React.FC<controlNews> = ({ id, onClickDrop }) => {
+const ControlNews: React.FC<controlNews> = ({ card, onClickDrop }) => {
   const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
   const valueDropdawn = useAppSelector((state) => state.controlsSlice.dropdawn);
-  const card = useAppSelector((state) =>
-    state.controlsSlice.cardsData.find((el) => el.id === id)
+  const disLikePost = useAppSelector(
+    (state) => state.controlsSlice.disLikedPosts
   );
-
+  const likePost = useAppSelector((state) => state.controlsSlice.likedPosts);
+  const bookMark = useAppSelector((state) => state.controlsSlice.bookmarkPosts);
   const dispatch = useAppDispatch();
+
+  const isLikeCount = likePost.findIndex((post) => post.id === card.id) > -1;
+  const isDisLikeCount =
+    disLikePost.findIndex((post) => post.id === card.id) > -1;
+  const isBookmark = bookMark.findIndex((post) => post.id === card.id) > -1;
+
+  const onStatusClick = (likeStatus: LikeStatus) => {
+    dispatch(setlikedStatus({ card, likeStatus }));
+  };
 
   return (
     <div className={styles.control}>
       <div>
         <button
-          // onClick={() => {
-          //   dispatch(setLike(card));
-          // }}
+          onClick={() => {
+            onStatusClick(LikeStatus.Like);
+          }}
           className={styles.btn}
           type="submit"
         >
@@ -42,11 +51,11 @@ const ControlNews: React.FC<controlNews> = ({ id, onClickDrop }) => {
             })}
           />
         </button>
-        <span className={styles.span}>{card?.like}</span>
+        <span className={styles.span}>{isLikeCount && 1}</span>
         <button
-          // onClick={() => {
-          //   dispatch(setDisLike(card));
-          // }}
+          onClick={() => {
+            onStatusClick(LikeStatus.DisLike);
+          }}
           className={classNames(styles.btn, {
             [styles.bodyMon]: valueOnMon,
           })}
@@ -58,17 +67,27 @@ const ControlNews: React.FC<controlNews> = ({ id, onClickDrop }) => {
             })}
           />
         </button>
-        <span className={styles.span}>{card?.disLike}</span>
+        <span className={styles.span}>{isDisLikeCount && 1}</span>
       </div>
       <div>
-        <button className={styles.btn} type="submit">
-          <BsBookmark
-            className={classNames(styles.btn, {
-              [styles.bodyMon]: valueOnMon,
-            })}
-          />
+        <button
+          className={styles.btn}
+          type="submit"
+          onClick={() => {
+            dispatch(setbookmarkPosts(card));
+          }}
+        >
+          {isBookmark ? (
+            <BsBookmarkFill className={styles.btnOnBook} />
+          ) : (
+            <BsBookmark
+              className={classNames(styles.btn, {
+                [styles.bodyMon]: valueOnMon,
+              })}
+            />
+          )}
         </button>
-        {/* <BsBookmarkFill />  */}
+
         <button className={styles.btn} type="submit">
           <BsThreeDots
             onClick={onClickDrop}

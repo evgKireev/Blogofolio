@@ -4,19 +4,38 @@ import OneNews from '../OneNews/index';
 import Pogination from '../Pogination';
 import { oneNewsBlock } from '../OneNews/index';
 import styles from './Main.module.scss';
+import { useAppSelector } from '../../redux/hooks';
 
 const Main: React.FC = () => {
+  const activeTabs = useAppSelector(
+    (state) => state.categoriesSlice.valueCategoria
+  );
+  const likePosts = useAppSelector((state) => state.controlsSlice.likedPosts);
+  const bookMarkPost = useAppSelector(
+    (state) => state.controlsSlice.bookmarkPosts
+  );
+
+  const cardsArray = () => {
+    if (activeTabs === 1) {
+      return bookMarkPost;
+    } else if (activeTabs === 2) {
+      return likePosts;
+    } else {
+      return cardsData;
+    }
+  };
+  const cards = cardsArray();
   return (
     <main>
       <h1>Blog</h1>
       <Categories />
-      {!cardsData.length ? (
+      {!cards.length ? (
         <h1 className={styles.noPosts}>No posts!</h1>
       ) : (
         <div className={styles.container__inner}>
           <div>
             <div className={styles.bigNews}>
-              {cardsData.map((card, index) => {
+              {cards.map((card, index) => {
                 if (index === 0) {
                   return (
                     <OneNews
@@ -32,7 +51,7 @@ const Main: React.FC = () => {
             </div>
 
             <div className={styles.blockGrid}>
-              {cardsData.map((card, index) => {
+              {cards.map((card, index) => {
                 if (index > 0 && index < 5) {
                   return (
                     <div key={card.id} className={styles.gridNews}>
@@ -49,7 +68,7 @@ const Main: React.FC = () => {
           </div>
 
           <div>
-            {cardsData.map((card, index) => {
+            {cards.map((card, index) => {
               if (index > 4) {
                 return (
                   <div key={card.id} className={styles.asignNews}>

@@ -9,3 +9,13 @@ export type CardsType = {
   like?: number;
   disLike?: number;
 };
+
+export enum LikeStatus {
+  Like = 'like',
+  DisLike = 'dislike',
+}
+
+export type SetLikeStatusPayload = {
+  card: CardsType;
+  likeStatus: LikeStatus;
+};

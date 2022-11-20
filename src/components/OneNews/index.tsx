@@ -47,7 +47,7 @@ const OneNews: React.FC<oneNewType> = ({ card, type, className, desc }) => {
           />
         </div>
       </div>
-      <ControlNews id={id} onClickDrop={() => dispatch(setDropdawn(card))} />
+      <ControlNews card={card} onClickDrop={() => dispatch(setDropdawn(card))} />
     </>
   );
 };

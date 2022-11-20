@@ -18,9 +18,20 @@
   cursor: pointer;
   &:hover {
     transform: scale(1.1);
-    color: $acsent;
   }
 }
+.btnOnBook {
+  background-color: transparent;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  margin-right: 8px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
 
 .span {
   font-weight: 700;
