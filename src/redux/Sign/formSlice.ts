@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { UserType } from '../../@types/user';
+import { UserActivateType, UserType } from '../../@types/user';
 
 export const addNewUser = createAsyncThunk(
   'user/addNewUser',
@@ -13,10 +13,24 @@ export const addNewUser = createAsyncThunk(
   }
 );
 
+export const activatNewUser = createAsyncThunk(
+  'user/activatNewUser',
+  async ({ uid, token }: UserActivateType) => {
+    await axios.post(
+      'https://studapi.teachmeskills.by/auth/users/activation/',
+      {
+        uid,
+        token,
+      }
+    );
+  }
+);
+
 const formSlice = createSlice({
   name: 'formInput',
   initialState: {
-    status: '',
+    statusAddNewUser: '',
+    statusActivatNewUser: '',
     signInMail: '',
     signInPassword: '',
     signUpName: '',
@@ -48,13 +62,22 @@ const formSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(addNewUser.pending, (state) => {
-      state.status = 'pending';
+      state.statusAddNewUser = 'pending';
     });
-    builder.addCase(addNewUser.fulfilled, (state, action) => {
-      state.status = 'fulfilled';
+    builder.addCase(addNewUser.fulfilled, (state) => {
+      state.statusAddNewUser = 'fulfilled';
     });
     builder.addCase(addNewUser.rejected, (state) => {
-      state.status = 'rejected';
+      state.statusAddNewUser = 'rejected';
+    });
+    builder.addCase(activatNewUser.pending, (state) => {
+      state.statusActivatNewUser = 'pending';
+    });
+    builder.addCase(activatNewUser.fulfilled, (state) => {
+      state.statusActivatNewUser = 'fulfilled';
+    });
+    builder.addCase(activatNewUser.rejected, (state) => {
+      state.statusActivatNewUser = 'rejected';
     });
   },
 });

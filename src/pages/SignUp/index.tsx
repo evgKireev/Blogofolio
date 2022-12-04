@@ -18,14 +18,14 @@ const SignUp: React.FC = () => {
   const username = useAppSelector((state) => state.formSlice.signUpName);
   const email = useAppSelector((state) => state.formSlice.signUpMail);
   const password = useAppSelector((state) => state.formSlice.signUpPassword);
-  const { status } = useAppSelector((state) => state.formSlice);
+  const { statusAddNewUser } = useAppSelector((state) => state.formSlice);
   useEffect(() => {
-    if (status === 'fulfilled') {
+    if (statusAddNewUser === 'fulfilled') {
       navigate('/registrationConfirmation', { state: email });
     }
-  }, [status]);
+  }, [statusAddNewUser]);
 
-  if (status === 'pending') {
+  if (statusAddNewUser === 'pending') {
     return (
       <div className={styles.ldsRoller}>
         <div></div>

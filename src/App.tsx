@@ -1,6 +1,5 @@
 import { useAppSelector } from './redux/hooks';
 import { Route, Routes } from 'react-router-dom';
-
 import classNames from 'classnames';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -32,7 +31,7 @@ const App: React.FC = () => {
             path="registrationConfirmation"
             element={<RegistrationConfirmation />}
           />
-          <Route path="success" element={<Success />} />
+          <Route path="activate/:uid/:token" element={<Success />} />
           <Route path="addPost" element={<AddPost />} />
           <Route path="resetPassword" element={<ResetPasword />} />
           <Route path="newPassword" element={<NewPasword />} />
