@@ -4,6 +4,7 @@ import menuSlice from './home/menuSlice';
 import inputSlice from './home/inputSlice';
 import controlsSlice from './home/controlsSlice';
 import formSlice from './Sign/formSlice';
+import blogsSlice from './blogsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     menuSlice,
     inputSlice,
     formSlice,
+    blogsSlice,
   },
 });
 

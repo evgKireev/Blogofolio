@@ -36,7 +36,7 @@ const App: React.FC = () => {
           <Route path="addPost" element={<AddPost />} />
           <Route path="resetPassword" element={<ResetPasword />} />
           <Route path="newPassword" element={<NewPasword />} />
-          <Route path="one-blog/:slag" element={<OneBlog />} />
+          <Route path="one-blog/:id" element={<OneBlog />} />
           <Route path="*" element={<h1>No Found</h1>} />
         </Route>
       </Routes>

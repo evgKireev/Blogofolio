@@ -4,9 +4,15 @@ import OneNews from '../OneNews/index';
 import Pogination from '../Pogination';
 import { oneNewsBlock } from '../OneNews/index';
 import styles from './Main.module.scss';
-import { useAppSelector } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { useEffect } from 'react';
+import { fetchBlogs } from '../../redux/blogsSlice';
+import { RootState } from '../../redux/store';
 
 const Main: React.FC = () => {
+  const { data, status } = useAppSelector(
+    (state: RootState) => state.blogsSlice
+  );
   const activeTabs = useAppSelector(
     (state) => state.categoriesSlice.valueCategoria
   );
@@ -14,6 +20,11 @@ const Main: React.FC = () => {
   const bookMarkPost = useAppSelector(
     (state) => state.controlsSlice.bookmarkPosts
   );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchBlogs());
+  }, []);
 
   const cardsArray = () => {
     if (activeTabs === 1) {
@@ -21,67 +32,91 @@ const Main: React.FC = () => {
     } else if (activeTabs === 2) {
       return likePosts;
     } else {
-      return cardsData;
+      return data;
     }
   };
-  const cards = cardsArray();
+  const blogs = cardsArray();
   return (
     <main>
       <h1>Blog</h1>
       <Categories />
-      {!cards.length ? (
-        <h1 className={styles.noPosts}>No posts!</h1>
+      {status === 'pending' ? (
+        <div className={styles.ldsRoller}>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       ) : (
         <div className={styles.container__inner}>
-          <div>
-            <div className={styles.bigNews}>
-              {cards.map((card, index) => {
-                if (index === 0) {
-                  return (
-                    <OneNews
-                      key={card.id}
-                      type={oneNewsBlock.DefaultBlock}
-                      className={oneNewsBlock.DefaultBlock}
-                      card={card}
-                      desc={card.text}
-                    />
-                  );
-                }
-              })}
+          {status === 'rejected' ? (
+            <div className={styles.error}>
+              <h2>
+                Произошла ошибка <span>😕</span>
+              </h2>
+              <p>
+                К сожалению, не удалось получить посты. Попробуйте повторить
+                попытку позже!
+              </p>
             </div>
+          ) : (
+            <>
+              <div>
+                <div className={styles.bigNews}>
+                  {blogs.map((card, index) => {
+                    if (index === 0) {
+                      return (
+                        <OneNews
+                          key={card.id}
+                          type={oneNewsBlock.DefaultBlock}
+                          className={oneNewsBlock.DefaultBlock}
+                          card={card}
+                          desc={card.text}
+                        />
+                      );
+                    }
+                  })}
+                </div>
 
-            <div className={styles.blockGrid}>
-              {cards.map((card, index) => {
-                if (index > 0 && index < 5) {
-                  return (
-                    <div key={card.id} className={styles.gridNews}>
-                      <OneNews
-                        type={oneNewsBlock.GridBlock}
-                        className={oneNewsBlock.GridBlock}
-                        card={card}
-                      />
-                    </div>
-                  );
-                }
-              })}
-            </div>
-          </div>
+                <div className={styles.blockGrid}>
+                  {blogs.map((card, index) => {
+                    if (index > 0 && index < 5) {
+                      return (
+                        <div key={card.id} className={styles.gridNews}>
+                          <OneNews
+                            type={oneNewsBlock.GridBlock}
+                            className={oneNewsBlock.GridBlock}
+                            card={card}
+                          />
+                        </div>
+                      );
+                    }
+                  })}
+                </div>
+              </div>
 
-          <div>
-            {cards.map((card, index) => {
-              if (index > 4) {
-                return (
-                  <div key={card.id} className={styles.asignNews}>
-                    <OneNews
-                      type={oneNewsBlock.AsideBlock}
-                      className={oneNewsBlock.AsideBlock}
-                      card={card}
-                    />
-                  </div>
-                );
-              }
-            })}
-          </div>
+              <div>
+                {blogs.map((card, index) => {
+                  if (index > 4) {
+                    return (
+                      <div key={card.id} className={styles.asignNews}>
+                        <OneNews
+                          type={oneNewsBlock.AsideBlock}
+                          className={oneNewsBlock.AsideBlock}
+                          card={card}
+                        />
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+            </>
+          )}
+
           <Pogination />
         </div>
       )}

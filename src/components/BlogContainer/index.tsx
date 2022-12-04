@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import { useAppSelector } from '../../redux/hooks';
 
 type BlogContainerType = {
-  title: string;
+  title: string | undefined;
   children: ReactElement;
-  lesson_num: number;
+  lesson_num: number | undefined;
 };
 
 const BlogContainer: React.FC<BlogContainerType> = ({
@@ -22,7 +22,6 @@ const BlogContainer: React.FC<BlogContainerType> = ({
       <ul className={styles.breadcrumbs}>
         <li>
           <Link className={classNames({ [styles.bodyMon]: valueOnMon })} to="/">
-            {' '}
             Home
           </Link>
         </li>
