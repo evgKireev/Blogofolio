@@ -28,16 +28,17 @@ const Input: React.FC<typeInput> = ({
 }) => {
   const styleInput = styles[type];
   return (
-    <div >
+    <div>
       <h3>{title}</h3>
-      <input
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        className={classNames(styles.input, styleInput, className, {
-          [styles.disabled]: disabled,
-        })}
-      ></input>
+        <input
+          required
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          className={classNames(styles.input, styleInput, className, {
+            [styles.disabled]: disabled,
+          })}
+        ></input>
     </div>
   );
 };

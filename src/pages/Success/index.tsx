@@ -3,7 +3,9 @@ import Buttons, { ButtonType } from '../../components/Buttons';
 
 import styles from './Success.module.scss';
 
+
 const Success: React.FC = () => {
+ 
   return (
     <FormContainer title="Success">
       <>

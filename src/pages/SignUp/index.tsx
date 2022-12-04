@@ -2,18 +2,44 @@ import FormContainer from '../../components/FormContainer';
 import Input, { InputType } from '../../components/Input';
 import Buttons, { ButtonType } from '../../components/Buttons';
 
-import { useAppDispatch } from '../../redux/hooks';
-import { useAppSelector } from '../../redux/hooks';
-import { setSignUpMail } from '../../redux/Sign/formSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { addNewUser, setSignUpMail } from '../../redux/Sign/formSlice';
 import { setSignUpName } from '../../redux/Sign/formSlice';
 import { setSignUpPassword } from '../../redux/Sign/formSlice';
 import { setSignUpPasswordConfirm } from '../../redux/Sign/formSlice';
 
 import styles from './SignUp.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const SignUp: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const username = useAppSelector((state) => state.formSlice.signUpName);
+  const email = useAppSelector((state) => state.formSlice.signUpMail);
+  const password = useAppSelector((state) => state.formSlice.signUpPassword);
+  const { status } = useAppSelector((state) => state.formSlice);
+  useEffect(() => {
+    if (status === 'fulfilled') {
+      navigate('/registrationConfirmation', { state: email });
+    }
+  }, [status]);
+
+  if (status === 'pending') {
+    return (
+      <div className={styles.ldsRoller}>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    );
+  }
+
   return (
     <FormContainer title="Sign Up">
       <>
@@ -25,6 +51,7 @@ const SignUp: React.FC = () => {
             className={InputType.Default}
             onChange={(e) => dispatch(setSignUpName(e.target.value))}
           />
+
           <Input
             placeholder="Your email"
             title="Email"
@@ -51,9 +78,15 @@ const SignUp: React.FC = () => {
           type={ButtonType.Primary}
           title={'Sign Up'}
           className={styles.btn}
+          onClick={() => {
+            dispatch(addNewUser({ username, email, password }));
+          }}
         />
         <div className={styles.desc}>
-          Don’t have an account? <Link to='../signIn'><span className={styles.span}>Sign In</span></Link>
+          Don’t have an account?{' '}
+          <Link to="../signIn">
+            <span className={styles.span}>Sign In</span>
+          </Link>
         </div>
       </>
     </FormContainer>
