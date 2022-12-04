@@ -4,7 +4,7 @@ import Buttons, { ButtonType } from '../../components/Buttons';
 import { useAppDispatch } from '../../redux/hooks';
 
 import styles from './RegistrationConfirmation.module.scss';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const RegistrationConfirmation: React.FC = () => {
   const location = useLocation();
@@ -17,11 +17,13 @@ const RegistrationConfirmation: React.FC = () => {
           <span className={styles.span}>{mail.state}</span>.<br />
           Please, check your email
         </div>
+        <Link to={'/'}>
         <Buttons
           type={ButtonType.Primary}
           title={'Go to home'}
           className={styles.btn}
         />
+        </Link>
       </>
     </FormContainer>
   );
