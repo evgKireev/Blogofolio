@@ -12,6 +12,7 @@ import ResetPasword from './pages/ResetPasword';
 import NewPasword from './pages/NewPassword';
 import OneBlog from './pages/OneBlog';
 import './scss/app.scss';
+import NoFaund from './components/NoFaund';
 
 const App: React.FC = () => {
   const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
@@ -36,7 +37,7 @@ const App: React.FC = () => {
           <Route path="resetPassword" element={<ResetPasword />} />
           <Route path="newPassword" element={<NewPasword />} />
           <Route path="one-blog/:id" element={<OneBlog />} />
-          <Route path="*" element={<h1>No Found</h1>} />
+          <Route path="*" element={<NoFaund />} />
         </Route>
       </Routes>
     </div>
