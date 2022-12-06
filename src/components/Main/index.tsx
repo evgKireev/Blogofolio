@@ -36,6 +36,32 @@ const Main: React.FC = () => {
     }
   };
   const blogs = cardsArray();
+
+  if (!blogs.length) {
+    return (
+      <>
+        <h1>Blog</h1>
+        <Categories />
+        {status === 'pending' ? (
+          <div className={styles.ldsRoller}>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        ) : (
+          <h1 className={styles.noPosts}>No posts!</h1>
+        )}
+      </>
+    );
+  }
+  {
+  }
+
   return (
     <main>
       <h1>Blog</h1>

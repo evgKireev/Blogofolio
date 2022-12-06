@@ -4,7 +4,7 @@ import Buttons, { ButtonType } from '../../components/Buttons';
 import styles from './Success.module.scss';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { activatNewUser } from '../../redux/Sign/formSlice';
+import { activatNewUser } from '../../redux/Sign/signUpSlice';
 import { useEffect } from 'react';
 
 const Success: React.FC = () => {
@@ -43,7 +43,7 @@ const Success: React.FC = () => {
         </div>
         <Buttons
           type={ButtonType.Primary}
-          title={'Please cinfirm'}
+          title={'Please Confirm'}
           className={styles.btn}
           onClick={() =>
             dispatch(

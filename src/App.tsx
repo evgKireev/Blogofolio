@@ -31,7 +31,7 @@ const App: React.FC = () => {
             path="registrationConfirmation"
             element={<RegistrationConfirmation />}
           />
-          <Route path="activate/:uid/:token" element={<Success />} />
+          <Route path="/activate/:uid/:token" element={<Success />} />
           <Route path="addPost" element={<AddPost />} />
           <Route path="resetPassword" element={<ResetPasword />} />
           <Route path="newPassword" element={<NewPasword />} />

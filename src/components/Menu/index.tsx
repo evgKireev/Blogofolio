@@ -19,9 +19,10 @@ type menuType = {
 const Menu: React.FC<menuType> = ({ btnRef }) => {
   const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
   const valueMenu = useAppSelector((state) => state.menuSlice.valueMenu);
+  const registered = useAppSelector((state) => state.signInSlice.registered);
+  const { userName } = useAppSelector((state) => state.signInSlice);
   const dispath = useAppDispatch();
   const menuRef = useRef(null);
-  const registered = true;
 
   useEffect(() => {
     const eventMenu = (e: MouseEvent) => {
@@ -39,7 +40,7 @@ const Menu: React.FC<menuType> = ({ btnRef }) => {
     return () => {
       document.body.removeEventListener('click', eventMenu);
     };
-  }, []);
+  }, [registered]);
 
   return (
     <div
@@ -48,7 +49,7 @@ const Menu: React.FC<menuType> = ({ btnRef }) => {
     >
       {registered && (
         <UserControl
-          userName={'Artem Malkin'}
+          userName={userName ? userName.username : ''}
           onClick={() => console.log('User')}
         />
       )}

@@ -31,22 +31,12 @@ const formSlice = createSlice({
   initialState: {
     statusAddNewUser: '',
     statusActivatNewUser: '',
-    signInMail: '',
-    signInPassword: '',
     signUpName: '',
     signUpMail: '',
     signUpPassword: '',
     signUpPasswordConfirm: '',
   },
   reducers: {
-    setSignInMail: (state, actions: PayloadAction<string>) => {
-      state.signInMail = actions.payload;
-    },
-
-    setSignInPassword: (state, actions: PayloadAction<string>) => {
-      state.signInPassword = actions.payload;
-    },
-
     setSignUpName: (state, actions: PayloadAction<string>) => {
       state.signUpName = actions.payload;
     },
@@ -83,8 +73,6 @@ const formSlice = createSlice({
 });
 
 export const {
-  setSignInMail,
-  setSignInPassword,
   setSignUpName,
   setSignUpMail,
   setSignUpPassword,

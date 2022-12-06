@@ -3,10 +3,10 @@ import Input, { InputType } from '../../components/Input';
 import Buttons, { ButtonType } from '../../components/Buttons';
 
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { addNewUser, setSignUpMail } from '../../redux/Sign/formSlice';
-import { setSignUpName } from '../../redux/Sign/formSlice';
-import { setSignUpPassword } from '../../redux/Sign/formSlice';
-import { setSignUpPasswordConfirm } from '../../redux/Sign/formSlice';
+import { addNewUser, setSignUpMail } from '../../redux/Sign/signUpSlice';
+import { setSignUpName } from '../../redux/Sign/signUpSlice';
+import { setSignUpPassword } from '../../redux/Sign/signUpSlice';
+import { setSignUpPasswordConfirm } from '../../redux/Sign/signUpSlice';
 
 import styles from './SignUp.module.scss';
 import { Link, useNavigate } from 'react-router-dom';

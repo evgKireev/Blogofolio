@@ -17,13 +17,13 @@ const Header: React.FC = () => {
     (state) => state.menuSlice.valueCloseInput
   );
   const inputSearch = useAppSelector((state) => state.inputSlice.inputSearch);
-
+  const registered = useAppSelector((state) => state.signInSlice.registered);
+  const { userName } = useAppSelector((state) => state.signInSlice);
   const activeSearch = styles.inner__search__block__active;
   const noneBlockSearc = styles.inner__search__block__input;
   const btnRef = useRef(null);
   const searchRef = useRef(null);
   const btnSearchRef = useRef(null);
-  const registered = false;
   useEffect(() => {
     const eventSearch = (e: MouseEvent) => {
       const _e = e as MouseEvent & {
@@ -40,7 +40,7 @@ const Header: React.FC = () => {
     return () => {
       document.body.removeEventListener('click', eventSearch);
     };
-  }, []);
+  }, [registered]);
 
   return (
     <header className={styles.inner}>
@@ -86,7 +86,7 @@ const Header: React.FC = () => {
           <BiSearch />
         </button>
         {registered ? (
-          <UserControl userName="Artem Malkin" />
+          <UserControl userName={userName ? userName.username : ''} />
         ) : (
           <Link to="signIn">
             <div className={styles.inner__user}>

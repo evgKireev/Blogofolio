@@ -3,7 +3,8 @@ import categoriesSlice from './home/categoriesSlice';
 import menuSlice from './home/menuSlice';
 import inputSlice from './home/inputSlice';
 import controlsSlice from './home/controlsSlice';
-import formSlice from './Sign/formSlice';
+import signInSlice from './Sign/signInSlice';
+import formSlice from './Sign/signUpSlice';
 import blogsSlice from './blogsSlice';
 
 export const store = configureStore({
@@ -13,6 +14,7 @@ export const store = configureStore({
     menuSlice,
     inputSlice,
     formSlice,
+    signInSlice,
     blogsSlice,
   },
 });

@@ -1,8 +1,5 @@
 import FormContainer from '../../components/FormContainer';
 import Buttons, { ButtonType } from '../../components/Buttons';
-
-import { useAppDispatch } from '../../redux/hooks';
-
 import styles from './RegistrationConfirmation.module.scss';
 import { Link, useLocation } from 'react-router-dom';
 
