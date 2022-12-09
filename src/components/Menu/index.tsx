@@ -11,15 +11,16 @@ import Buttons from '../Buttons';
 import styles from './Menu.module.scss';
 import classNames from 'classnames';
 import '../../scss/app.scss';
+import { logoutUser } from '../../redux/Sign/signInSlice';
 
 type menuType = {
   btnRef: { current: null };
 };
 
 const Menu: React.FC<menuType> = ({ btnRef }) => {
-  const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
-  const valueMenu = useAppSelector((state) => state.menuSlice.valueMenu);
-  const registered = useAppSelector((state) => state.signInSlice.registered);
+  const {valueOnMon} = useAppSelector((state) => state.menuSlice);
+  const {valueMenu} = useAppSelector((state) => state.menuSlice);
+  const { registered } = useAppSelector((state) => state.signInSlice);
   const { userName } = useAppSelector((state) => state.signInSlice);
   const dispath = useAppDispatch();
   const menuRef = useRef(null);
@@ -40,18 +41,15 @@ const Menu: React.FC<menuType> = ({ btnRef }) => {
     return () => {
       document.body.removeEventListener('click', eventMenu);
     };
-  }, [registered]);
+  }, []);
 
   return (
     <div
       ref={menuRef}
       className={valueMenu ? styles.activeBlock : styles.inner}
     >
-      {registered && (
-        <UserControl
-          userName={userName ? userName.username : ''}
-          onClick={() => console.log('User')}
-        />
+      {registered && !!userName && (
+        <UserControl userName={userName} onClick={() => console.log('User')} />
       )}
       <div className={styles.menu}>
         <div className={styles.menuBlock}>
@@ -112,7 +110,7 @@ const Menu: React.FC<menuType> = ({ btnRef }) => {
               <Buttons
                 className={styles.btn}
                 title="Log Out"
-                onClick={() => dispath(setValueMenu(false))}
+                onClick={() => dispath(logoutUser())}
                 type={ButtonType.Secondary}
                 disabled={false}
               />
@@ -122,7 +120,6 @@ const Menu: React.FC<menuType> = ({ btnRef }) => {
               <Buttons
                 className={styles.btn}
                 title="Sign In"
-                onClick={() => dispath(setValueMenu(false))}
                 type={ButtonType.Secondary}
                 disabled={false}
               />

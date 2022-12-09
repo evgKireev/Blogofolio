@@ -6,15 +6,14 @@ export type CardsType = {
   title?: string;
   lesson_num?: number;
   author?: number;
-  like?: number;
-  disLike?: number;
 };
+
+export type CardListType = Array<CardsType>;
 
 export type SetLikeStatusPayload = {
   card: CardsType;
   likeStatus: LikeStatus;
 };
-
 
 export enum LikeStatus {
   Like = 'like',

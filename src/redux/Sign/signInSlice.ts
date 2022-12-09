@@ -1,47 +1,21 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { SignInUser, UserMe } from '../../@types/user';
-
-export const signInUser = createAsyncThunk(
-  'user/signInUser',
-  async ({ password, email }: SignInUser) => {
-    await axios
-      .post('https://studapi.teachmeskills.by/auth/jwt/create/', {
-        password,
-        email,
-      })
-      .then(({ data }) => {
-        localStorage.setItem('ACCESS_TOKEN_KEY', data?.access);
-        localStorage.setItem('REFRESH_TOKEN_KEY', data?.refresh);
-      });
-  }
-);
-
-export const getUserMe = createAsyncThunk('user/getUserMe', async () => {
-  const accessToken = localStorage.getItem('ACCESS_TOKEN_KEY') || '';
-  const { data } = await axios.get(
-    'https://studapi.teachmeskills.by/auth/users/me/',
-    { headers: { Authorization: `Bearer ${accessToken}` } }
-  );
-  return data as UserMe;
-});
+import { ACCESS_TOKEN_KEY } from '../../@types/constant';
+import { SignInUserPayload } from '../../@types/user';
 
 type initialStateSignIn = {
-  statusSignInUser: string;
-  statusGetUser: string;
   signInMail: string;
   signInPassword: string;
   registered: boolean;
-  userName: UserMe | undefined;
+  userName: string;
+  status: string
 };
 
 const initialState: initialStateSignIn = {
-  statusSignInUser: '',
-  statusGetUser: '',
   signInMail: '',
   signInPassword: '',
-  registered: false,
-  userName: undefined,
+  registered: !!localStorage.getItem(ACCESS_TOKEN_KEY),
+  userName: '',
+  status: ''
 };
 
 const signInSlice = createSlice({
@@ -51,27 +25,36 @@ const signInSlice = createSlice({
     setSignInMail: (state, actions: PayloadAction<string>) => {
       state.signInMail = actions.payload;
     },
-
     setSignInPassword: (state, actions: PayloadAction<string>) => {
       state.signInPassword = actions.payload;
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(signInUser.pending, (state) => {
-      state.statusSignInUser = 'pending';
-    });
-    builder.addCase(signInUser.fulfilled, (state, actions) => {
-      state.statusSignInUser = 'fulfilled';
-      state.registered = true;
-    });
-    builder.addCase(signInUser.rejected, (state) => {
-      state.statusSignInUser = 'rejected';
-    });
-    builder.addCase(getUserMe.fulfilled, (state, actions) => {
+    setSignInUser(state, actoins: PayloadAction<SignInUserPayload>) {},
+    setRegistered(state, actions: PayloadAction<boolean>) {
+      state.registered = actions.payload;
+    },
+    getUserData(state, actions: PayloadAction<undefined>) {},
+    setUserData(state, actions: PayloadAction<string>) {
       state.userName = actions.payload;
-    });
+    },
+    logoutUser(state, actions: PayloadAction<undefined>) {},
+    setStatus(state, actions:PayloadAction<string>){
+      state.status = actions.payload
+    }
   },
 });
 
-export const { setSignInMail, setSignInPassword } = signInSlice.actions;
+export const {
+  setSignInMail,
+  setSignInPassword,
+  setSignInUser,
+  setRegistered,
+  setUserData,
+  getUserData,
+  logoutUser,
+  setStatus,
+} = signInSlice.actions;
 export default signInSlice.reducer;
+
+// uxp24601@xcoxc.com.
+// yws80752@nezid.com
+// zgu66366@xcoxc.com

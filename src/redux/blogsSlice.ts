@@ -1,44 +1,29 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { CardsType } from '../@types/cards';
-import axios from 'axios';
-
-export const fetchBlogs = createAsyncThunk(
-  'blogs/fetchBlogStatus',
-  async () => {
-    const { data } = await axios.get(
-      `https://studapi.teachmeskills.by/blog/posts/?limit=11`
-    );
-    return data.results as CardsType[];
-  }
-);
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { CardListType } from '../@types/cards';
 
 type BlogSliseState = {
-  data: CardsType[];
+  data: CardListType;
   status: string;
 };
 
 const initialState: BlogSliseState = {
   data: [],
-  status: 'pending',
+  status: '',
 };
 
 const blogsSlice = createSlice({
   name: 'blogs',
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(fetchBlogs.pending, (state) => {
-      state.status = 'pending';
-      state.data = [];
-    });
-    builder.addCase(fetchBlogs.fulfilled, (state, action) => {
-      state.data = action.payload;
-      state.status = 'fulfilled';
-    });
-    builder.addCase(fetchBlogs.rejected, (state) => {
-      state.status = 'rejected';
-      state.data = [];
-    });
+  reducers: {
+    getBlogs: (state, actions: PayloadAction<undefined>) => {},
+    setBlogs: (state, actions: PayloadAction<CardListType>) => {
+      state.data = actions.payload;
+    },
+    setIsLoading: (state, actions: PayloadAction<string>) => {
+      state.status = actions.payload;
+    },
   },
 });
+
+export const { getBlogs, setBlogs, setIsLoading } = blogsSlice.actions;
 export default blogsSlice.reducer;

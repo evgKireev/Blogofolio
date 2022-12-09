@@ -3,7 +3,7 @@ import Input, { InputType } from '../../components/Input';
 import Buttons, { ButtonType } from '../../components/Buttons';
 
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { addNewUser, setSignUpMail } from '../../redux/Sign/signUpSlice';
+import { registerUser, setSignUpMail } from '../../redux/Sign/signUpSlice';
 import { setSignUpName } from '../../redux/Sign/signUpSlice';
 import { setSignUpPassword } from '../../redux/Sign/signUpSlice';
 import { setSignUpPasswordConfirm } from '../../redux/Sign/signUpSlice';
@@ -11,6 +11,7 @@ import { setSignUpPasswordConfirm } from '../../redux/Sign/signUpSlice';
 import styles from './SignUp.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import Loader from '../../components/Loader';
 
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
@@ -18,26 +19,10 @@ const SignUp: React.FC = () => {
   const username = useAppSelector((state) => state.formSlice.signUpName);
   const email = useAppSelector((state) => state.formSlice.signUpMail);
   const password = useAppSelector((state) => state.formSlice.signUpPassword);
-  const { statusAddNewUser } = useAppSelector((state) => state.formSlice);
-  useEffect(() => {
-    if (statusAddNewUser === 'fulfilled') {
-      navigate('/registrationConfirmation', { state: email });
-    }
-  }, [statusAddNewUser]);
+  const { status } = useAppSelector((state) => state.formSlice);
 
-  if (statusAddNewUser === 'pending') {
-    return (
-      <div className={styles.ldsRoller}>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    );
+  if (status === 'pending') {
+    return <Loader />;
   }
 
   return (
@@ -79,7 +64,13 @@ const SignUp: React.FC = () => {
           title={'Sign Up'}
           className={styles.btn}
           onClick={() => {
-            dispatch(addNewUser({ username, email, password }));
+            dispatch(
+              registerUser({
+                data: { username, email, password },
+                callback: () =>
+                  navigate('/registrationConfirmation', { state: email }),
+              })
+            );
           }}
         />
         <div className={styles.desc}>

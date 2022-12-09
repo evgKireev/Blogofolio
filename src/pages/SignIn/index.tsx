@@ -1,48 +1,23 @@
 import FormContainer from '../../components/FormContainer';
+import Loader from '../../components/Loader';
 import { Link, useNavigate } from 'react-router-dom';
 import Input, { InputType } from '../../components/Input';
 import Buttons, { ButtonType } from '../../components/Buttons';
 import { useAppDispatch } from '../../redux/hooks';
 import { useAppSelector } from '../../redux/hooks';
-import {
-  getUserMe,
-  setSignInMail,
-  signInUser,
-} from '../../redux/Sign/signInSlice';
+import { setSignInMail, setSignInUser } from '../../redux/Sign/signInSlice';
 import { setSignInPassword } from '../../redux/Sign/signInSlice';
 import styles from './SignIn.module.scss';
-import { useEffect } from 'react';
-
 
 const SignIn: React.FC = () => {
   const email = useAppSelector((state) => state.signInSlice.signInMail);
   const password = useAppSelector((state) => state.signInSlice.signInPassword);
-  const { statusSignInUser } = useAppSelector(
-    (state) => state.signInSlice
-  );
+  const { status } = useAppSelector((state) => state.formSlice);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (statusSignInUser === 'fulfilled') {
-      navigate('/');
-      dispatch(getUserMe());
-    }
-  }, [statusSignInUser]);
-
-  if (statusSignInUser === 'pending') {
-    return (
-      <div className={styles.ldsRoller}>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    );
+  if (status === 'pending') {
+    return <Loader />;
   }
 
   return (
@@ -70,7 +45,12 @@ const SignIn: React.FC = () => {
           title={'Sign In'}
           className={styles.btn}
           onClick={() => {
-            dispatch(signInUser({ password, email }));
+            dispatch(
+              setSignInUser({
+                data: { password, email },
+                callback: () => navigate('/'),
+              })
+            );
           }}
         />
         <div className={styles.desc}>

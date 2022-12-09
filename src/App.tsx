@@ -1,5 +1,5 @@
-import { useAppSelector } from './redux/hooks';
-import { Route, Routes } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from './redux/hooks';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import classNames from 'classnames';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -13,9 +13,21 @@ import NewPasword from './pages/NewPassword';
 import OneBlog from './pages/OneBlog';
 import './scss/app.scss';
 import NoFaund from './components/NoFaund';
+import { useEffect } from 'react';
+import { getUserData } from './redux/Sign/signInSlice';
+import { ACCESS_TOKEN_KEY } from './@types/constant';
 
 const App: React.FC = () => {
   const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
+  const registered = useAppSelector((state) => state.signInSlice.registered);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (registered) {
+      dispatch(getUserData());
+    }
+  }, [registered]);
+
   return (
     <div
       className={classNames(
@@ -33,7 +45,10 @@ const App: React.FC = () => {
             element={<RegistrationConfirmation />}
           />
           <Route path="/activate/:uid/:token" element={<Success />} />
-          <Route path="addPost" element={<AddPost />} />
+          <Route
+            path="addPost"
+            element={registered ? <AddPost /> : <Navigate to="/signIn" />}
+          />
           <Route path="resetPassword" element={<ResetPasword />} />
           <Route path="newPassword" element={<NewPasword />} />
           <Route path="one-blog/:id" element={<OneBlog />} />

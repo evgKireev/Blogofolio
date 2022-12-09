@@ -14,12 +14,19 @@ const RegistrationConfirmation: React.FC = () => {
           <span className={styles.span}>{mail.state}</span>.<br />
           Please, check your email
         </div>
+        <span>
+          ВНИМАНИЕ: так как это демо-версия сайта, для дальнейшей авторизаци, на
+          почту придет письмо со ссылкой, по которой НЕ нужно переходить, а
+          необходимо скопировать часть ссылки ПОСЛЕ этого -
+          http://studapi.teachmeskills.by// и вставить самостоятельно в адресную
+          строку после https://evgkireev.github.io/ (тоесть после адреса сайта).
+        </span>
         <Link to={'/'}>
-        <Buttons
-          type={ButtonType.Primary}
-          title={'Go to home'}
-          className={styles.btn}
-        />
+          <Buttons
+            type={ButtonType.Primary}
+            title={'Go to home'}
+            className={styles.btn}
+          />
         </Link>
       </>
     </FormContainer>

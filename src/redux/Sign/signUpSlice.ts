@@ -1,40 +1,14 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { UserActivateType, UserType } from '../../@types/user';
-
-export const addNewUser = createAsyncThunk(
-  'user/addNewUser',
-  async ({ username, email, password }: UserType) => {
-    await axios.post('https://studapi.teachmeskills.by/auth/users/', {
-      username,
-      email,
-      password,
-    });
-  }
-);
-
-export const activatNewUser = createAsyncThunk(
-  'user/activatNewUser',
-  async ({ uid, token }: UserActivateType) => {
-    await axios.post(
-      'https://studapi.teachmeskills.by/auth/users/activation/',
-      {
-        uid,
-        token,
-      }
-    );
-  }
-);
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { UserActivatePayload, UserPayloadType } from '../../@types/user';
 
 const formSlice = createSlice({
   name: 'formInput',
   initialState: {
-    statusAddNewUser: '',
-    statusActivatNewUser: '',
     signUpName: '',
     signUpMail: '',
     signUpPassword: '',
     signUpPasswordConfirm: '',
+    status: '',
   },
   reducers: {
     setSignUpName: (state, actions: PayloadAction<string>) => {
@@ -49,26 +23,11 @@ const formSlice = createSlice({
     setSignUpPasswordConfirm: (state, actions: PayloadAction<string>) => {
       state.signUpPasswordConfirm = actions.payload;
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(addNewUser.pending, (state) => {
-      state.statusAddNewUser = 'pending';
-    });
-    builder.addCase(addNewUser.fulfilled, (state) => {
-      state.statusAddNewUser = 'fulfilled';
-    });
-    builder.addCase(addNewUser.rejected, (state) => {
-      state.statusAddNewUser = 'rejected';
-    });
-    builder.addCase(activatNewUser.pending, (state) => {
-      state.statusActivatNewUser = 'pending';
-    });
-    builder.addCase(activatNewUser.fulfilled, (state) => {
-      state.statusActivatNewUser = 'fulfilled';
-    });
-    builder.addCase(activatNewUser.rejected, (state) => {
-      state.statusActivatNewUser = 'rejected';
-    });
+    registerUser: (state, actions: PayloadAction<UserPayloadType>) => {},
+    activeNewUser: (state, actions: PayloadAction<UserActivatePayload>) => {},
+    setIsStatus: (state, actions: PayloadAction<string>) => {
+      state.status = actions.payload;
+    },
   },
 });
 
@@ -77,5 +36,8 @@ export const {
   setSignUpMail,
   setSignUpPassword,
   setSignUpPasswordConfirm,
+  registerUser,
+  activeNewUser,
+  setIsStatus
 } = formSlice.actions;
 export default formSlice.reducer;

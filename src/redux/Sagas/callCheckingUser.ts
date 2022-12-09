@@ -1,0 +1,49 @@
+import { ApiResponse } from 'apisauce';
+import { call, put } from 'redux-saga/effects';
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '../../@types/constant';
+import { logoutUser } from '../Sign/signInSlice';
+import API from '../utils/API';
+
+export default function* callCheckingUser(api: any, ...rest: any) {
+  const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY) || '';
+  const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY) || '';
+
+  const res: ApiResponse<any> = yield call(api, accessToken, ...rest);
+
+  if (res.status === 401) {
+    const { status: accessStatus }: ApiResponse<any> = yield call(
+      API.verifyToken,
+      accessToken
+    );
+    if (accessStatus === 401) {
+      const { status: refreshStatus }: ApiResponse<any> = yield call(
+        API.verifyToken,
+        refreshToken
+      );
+      if (refreshStatus === 200) {
+        const { data, ok }: ApiResponse<any> = yield call(
+          API.getNewAccessToken,
+          refreshToken
+        );
+        if (ok && data) {
+          const { access } = data;
+          localStorage.setItem(ACCESS_TOKEN_KEY, access);
+          const newResponse: ApiResponse<any> = yield call(
+            api,
+            access,
+            ...rest
+          );
+          return newResponse;
+        } else {
+          yield put(logoutUser());
+        }
+      } else {
+        yield put(logoutUser());
+      }
+    } else {
+      return res;
+    }
+  } else {
+    return res;
+  }
+}

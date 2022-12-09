@@ -1,18 +1,16 @@
-import cardsData from '../../data/cards';
 import Categories from '../Categiries/index';
 import OneNews from '../OneNews/index';
 import Pogination from '../Pogination';
+import Loader from '../Loader';
 import { oneNewsBlock } from '../OneNews/index';
 import styles from './Main.module.scss';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect } from 'react';
-import { fetchBlogs } from '../../redux/blogsSlice';
 import { RootState } from '../../redux/store';
+import { getBlogs } from '../../redux/blogsSlice';
 
 const Main: React.FC = () => {
-  const { data, status } = useAppSelector(
-    (state: RootState) => state.blogsSlice
-  );
+  const { data } = useAppSelector((state: RootState) => state.blogsSlice);
   const activeTabs = useAppSelector(
     (state) => state.categoriesSlice.valueCategoria
   );
@@ -20,10 +18,11 @@ const Main: React.FC = () => {
   const bookMarkPost = useAppSelector(
     (state) => state.controlsSlice.bookmarkPosts
   );
+  const { status } = useAppSelector((state) => state.blogsSlice);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchBlogs());
+    dispatch(getBlogs());
   }, []);
 
   const cardsArray = () => {
@@ -43,16 +42,7 @@ const Main: React.FC = () => {
         <h1>Blog</h1>
         <Categories />
         {status === 'pending' ? (
-          <div className={styles.ldsRoller}>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
+         <Loader />
         ) : (
           <h1 className={styles.noPosts}>No posts!</h1>
         )}
@@ -67,16 +57,7 @@ const Main: React.FC = () => {
       <h1>Blog</h1>
       <Categories />
       {status === 'pending' ? (
-        <div className={styles.ldsRoller}>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+       <Loader />
       ) : (
         <div className={styles.container__inner}>
           {status === 'rejected' ? (

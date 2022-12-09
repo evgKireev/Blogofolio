@@ -24,6 +24,7 @@ const Header: React.FC = () => {
   const btnRef = useRef(null);
   const searchRef = useRef(null);
   const btnSearchRef = useRef(null);
+
   useEffect(() => {
     const eventSearch = (e: MouseEvent) => {
       const _e = e as MouseEvent & {
@@ -40,7 +41,7 @@ const Header: React.FC = () => {
     return () => {
       document.body.removeEventListener('click', eventSearch);
     };
-  }, [registered]);
+  }, []);
 
   return (
     <header className={styles.inner}>
@@ -85,8 +86,8 @@ const Header: React.FC = () => {
         >
           <BiSearch />
         </button>
-        {registered ? (
-          <UserControl userName={userName ? userName.username : ''} />
+        {registered && !!userName ? (
+          <UserControl userName={userName} />
         ) : (
           <Link to="signIn">
             <div className={styles.inner__user}>
