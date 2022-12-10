@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Blogofolio/static/css/main.bfb6291f.css",
-    "main.js": "/Blogofolio/static/js/main.ccf9a974.js",
+    "main.js": "/Blogofolio/static/js/main.e99096df.js",
     "static/media/Lovepik_com-832477006-404 network error astronaut planet.png": "/Blogofolio/static/media/Lovepik_com-832477006-404 network error astronaut planet.6d1f2f3f0f710e231522.png",
     "index.html": "/Blogofolio/index.html",
     "main.bfb6291f.css.map": "/Blogofolio/static/css/main.bfb6291f.css.map",
-    "main.ccf9a974.js.map": "/Blogofolio/static/js/main.ccf9a974.js.map"
+    "main.e99096df.js.map": "/Blogofolio/static/js/main.e99096df.js.map"
   },
   "entrypoints": [
     "static/css/main.bfb6291f.css",
-    "static/js/main.ccf9a974.js"
+    "static/js/main.e99096df.js"
   ]
 }
