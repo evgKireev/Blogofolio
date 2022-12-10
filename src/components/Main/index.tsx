@@ -7,10 +7,11 @@ import styles from './Main.module.scss';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect } from 'react';
 import { RootState } from '../../redux/store';
-import { getBlogs } from '../../redux/blogsSlice';
+import { getBlogs, getMyBlogs } from '../../redux/blogsSlice';
 
 const Main: React.FC = () => {
-  const { data } = useAppSelector((state: RootState) => state.blogsSlice);
+  const { data } = useAppSelector((state) => state.blogsSlice);
+  const { dataMyBlogs } = useAppSelector((state) => state.blogsSlice);
   const activeTabs = useAppSelector(
     (state) => state.categoriesSlice.valueCategoria
   );
@@ -19,17 +20,23 @@ const Main: React.FC = () => {
     (state) => state.controlsSlice.bookmarkPosts
   );
   const { status } = useAppSelector((state) => state.blogsSlice);
+  const { registered } = useAppSelector((state) => state.signInSlice);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getBlogs());
-  }, []);
+    if (registered) {
+      dispatch(getMyBlogs());
+    }
+  }, [registered]);
 
   const cardsArray = () => {
     if (activeTabs === 1) {
       return bookMarkPost;
     } else if (activeTabs === 2) {
       return likePosts;
+    } else if (activeTabs === 3) {
+      return dataMyBlogs;
     } else {
       return data;
     }
@@ -42,7 +49,7 @@ const Main: React.FC = () => {
         <h1>Blog</h1>
         <Categories />
         {status === 'pending' ? (
-         <Loader />
+          <Loader />
         ) : (
           <h1 className={styles.noPosts}>No posts!</h1>
         )}
@@ -57,7 +64,7 @@ const Main: React.FC = () => {
       <h1>Blog</h1>
       <Categories />
       {status === 'pending' ? (
-       <Loader />
+        <Loader />
       ) : (
         <div className={styles.container__inner}>
           {status === 'rejected' ? (

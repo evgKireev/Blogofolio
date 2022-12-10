@@ -19,48 +19,48 @@ import API from '../utils/API';
 import callCheckingUser from './callCheckingUser';
 
 function* registerUserWorker(actions: PayloadAction<UserPayloadType>) {
-  yield put (setIsStatus('pending'))
+  yield put(setIsStatus('pending'));
   const { data: registerData, callback } = actions.payload;
   const { ok, problem } = yield call(API.registerUser, registerData);
   if (ok) {
-    yield put (setIsStatus(''))
+    yield put(setIsStatus(''));
     callback();
   } else {
-    yield put (setIsStatus('rejected'))
+    yield put(setIsStatus('rejected'));
     console.warn(problem);
   }
 }
 
 function* activatNewUserWorker(actions: PayloadAction<UserActivatePayload>) {
-  yield put (setIsStatus('pending'))
+  yield put(setIsStatus('pending'));
   const { data, callback } = actions.payload;
   const { ok, problem } = yield call(API.fechActivteNewUser, data);
   if (ok) {
-    yield put (setIsStatus(''))
+    yield put(setIsStatus(''));
     callback();
   } else {
-    yield put (setIsStatus('rejected'))
+    yield put(setIsStatus('rejected'));
     console.warn(problem);
   }
 }
 
 function* signInUserWorker(actions: PayloadAction<SignInUserPayload>) {
-  yield put(setStatus('pending'))
+  yield put(setStatus('pending'));
   const { data: singInUserData, callback } = actions.payload;
   const { data, ok, problem } = yield call(API.signInUser, singInUserData);
   if (ok && data) {
     localStorage.setItem(ACCESS_TOKEN_KEY, data?.access);
     localStorage.setItem(REFRESH_TOKEN_KEY, data?.refresh);
-    yield put(setStatus(''))
     yield put(setRegistered(true));
     callback();
+    yield put(setStatus(''));
   } else {
     yield put(setStatus('rejected'))
     console.warn(problem);
   }
 }
 
-function* getUserMeWorker(actions: PayloadAction<any>) {
+function* getUserMeWorker() {
   const { data, ok, problem } = yield callCheckingUser(API.getUserMe);
   if (ok && data) {
     yield put(setUserData(data.username));

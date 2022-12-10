@@ -12,14 +12,14 @@ import styles from './SignIn.module.scss';
 const SignIn: React.FC = () => {
   const email = useAppSelector((state) => state.signInSlice.signInMail);
   const password = useAppSelector((state) => state.signInSlice.signInPassword);
-  const { status } = useAppSelector((state) => state.formSlice);
+  const { status } = useAppSelector((state) => state.signInSlice);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   if (status === 'pending') {
     return <Loader />;
   }
-
+  console.log(status);
   return (
     <FormContainer title="Sign In">
       <>
@@ -48,7 +48,7 @@ const SignIn: React.FC = () => {
             dispatch(
               setSignInUser({
                 data: { password, email },
-                callback: () => navigate('/'),
+                callback: () => {navigate('/')},
               })
             );
           }}

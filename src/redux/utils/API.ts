@@ -49,6 +49,10 @@ const verifyToken = (token: string) => {
   return API.post('/auth/jwt/verify', { token });
 };
 
+const getMyBlogs = (token: string) => {
+  return API.get('/blog/posts/my_posts', { token });
+};
+
 export default {
   registerUser,
   fechGetBlogs,
@@ -57,4 +61,5 @@ export default {
   getUserMe,
   getNewAccessToken,
   verifyToken,
+  getMyBlogs,
 };
