@@ -1,10 +1,19 @@
 import ReactPaginate from 'react-paginate';
+import { setPoginationSelect } from '../../redux/blogsSlice';
+import { useAppDispatch } from '../../redux/hooks';
 import styles from './Pogination.module.scss';
-const Pogination: React.FC = () => {
+
+type PoginationType = {
+  totalPageCount: number;
+};
+
+const Pogination: React.FC<PoginationType> = ({ totalPageCount }) => {
+  const dispatch = useAppDispatch();
   return (
     <>
       <ReactPaginate
         className={styles.items}
+        disabledClassName={styles.disabled}
         pageClassName={styles.item}
         pageLinkClassName="page-link"
         previousClassName={styles.previous__item}
@@ -16,12 +25,9 @@ const Pogination: React.FC = () => {
         activeClassName={styles.active}
         breakLabel="..."
         nextLabel="Next ->"
-        // onPageChange={handlePageClick}
-        marginPagesDisplayed={1}
-        pageRangeDisplayed={3}
-        pageCount={6}
         previousLabel="<- Prev"
-        // renderOnZeroPageCount={0}
+        onPageChange={(e) => dispatch(setPoginationSelect(e.selected+1))}
+        pageCount={totalPageCount}
       />
     </>
   );

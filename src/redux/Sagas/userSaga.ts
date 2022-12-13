@@ -1,6 +1,9 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { takeLatest, all, call, put } from 'redux-saga/effects';
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '../../@types/constant';
+import { activeNewUser, registerUser, setIsStatus } from '../Sign/signUpSlice';
+import API from '../utils/API';
+import callCheckingUser from './callCheckingUser';
 import {
   SignInUserPayload,
   UserActivatePayload,
@@ -14,9 +17,6 @@ import {
   logoutUser,
   setStatus,
 } from '../Sign/signInSlice';
-import { activeNewUser, registerUser, setIsStatus } from '../Sign/signUpSlice';
-import API from '../utils/API';
-import callCheckingUser from './callCheckingUser';
 
 function* registerUserWorker(actions: PayloadAction<UserPayloadType>) {
   yield put(setIsStatus('pending'));
@@ -55,7 +55,7 @@ function* signInUserWorker(actions: PayloadAction<SignInUserPayload>) {
     callback();
     yield put(setStatus(''));
   } else {
-    yield put(setStatus('rejected'))
+    yield put(setStatus('rejected'));
     console.warn(problem);
   }
 }

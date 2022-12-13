@@ -6,8 +6,8 @@ import { oneNewsBlock } from '../OneNews/index';
 import styles from './Main.module.scss';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect } from 'react';
-import { RootState } from '../../redux/store';
 import { getBlogs, getMyBlogs } from '../../redux/blogsSlice';
+import { PER_PAGE } from '../../@types/constant';
 
 const Main: React.FC = () => {
   const { data } = useAppSelector((state) => state.blogsSlice);
@@ -21,14 +21,19 @@ const Main: React.FC = () => {
   );
   const { status } = useAppSelector((state) => state.blogsSlice);
   const { registered } = useAppSelector((state) => state.signInSlice);
+  const { poginationSelect } = useAppSelector((state) => state.blogsSlice);
+  const { poginationCount } = useAppSelector((state) => state.blogsSlice);
+  const { inputSearch } = useAppSelector((state) => state.inputSlice);
   const dispatch = useAppDispatch();
+  const totalPageCount = Math.ceil(poginationCount / PER_PAGE);
+  const offset = PER_PAGE * (poginationSelect - 1);
 
   useEffect(() => {
-    dispatch(getBlogs());
+    dispatch(getBlogs({ offset, search: inputSearch }));
     if (registered) {
       dispatch(getMyBlogs());
     }
-  }, [registered]);
+  }, [registered, poginationSelect, inputSearch]);
 
   const cardsArray = () => {
     if (activeTabs === 1) {
@@ -42,7 +47,6 @@ const Main: React.FC = () => {
     }
   };
   const blogs = cardsArray();
-
   if (!blogs.length) {
     return (
       <>
@@ -130,10 +134,9 @@ const Main: React.FC = () => {
               </div>
             </>
           )}
-
-          <Pogination />
         </div>
       )}
+      <Pogination totalPageCount={totalPageCount} />
     </main>
   );
 };

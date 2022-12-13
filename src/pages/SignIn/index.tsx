@@ -19,7 +19,6 @@ const SignIn: React.FC = () => {
   if (status === 'pending') {
     return <Loader />;
   }
-  console.log(status);
   return (
     <FormContainer title="Sign In">
       <>

@@ -37,5 +37,11 @@
 }
 
 .active {
-  color: $acsent;
+  a {
+    color: $acsent;
+  }
+}
+
+.disabled{
+  pointer-events: none;
 }

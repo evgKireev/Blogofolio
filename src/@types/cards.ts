@@ -19,3 +19,8 @@ export enum LikeStatus {
   Like = 'like',
   DisLike = 'dislike',
 }
+
+export type GetBlogsPayload = {
+  offset: number;
+  search: string
+};

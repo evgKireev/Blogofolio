@@ -1,4 +1,5 @@
 import { create } from 'apisauce';
+import { PER_PAGE } from '../../@types/constant';
 import { SignInUser, UserActivateType, UserType } from '../../@types/user';
 
 const API = create({
@@ -13,8 +14,8 @@ const registerUser = ({ username, email, password }: UserType) => {
   });
 };
 
-const fechGetBlogs = () => {
-  return API.get(`/blog/posts/?limit=11`);
+const fechGetBlogs = (offset: number, search: string) => {
+  return API.get('/blog/posts/', { limit: PER_PAGE, offset, search });
 };
 
 const fechActivteNewUser = ({ uid, token }: UserActivateType) => {

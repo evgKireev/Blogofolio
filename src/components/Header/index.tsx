@@ -1,17 +1,23 @@
-import { useEffect, useRef } from 'react';
+import {
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { BiSearch, BiUser } from 'react-icons/bi';
 import { useAppDispatch } from '../../redux/hooks';
 import { useAppSelector } from '../../redux/hooks';
 import { setValueMenu, setValueCloseInput } from '../../redux/home/menuSlice';
-import { setInputSearch } from '../../redux/home/inputSlice';
+import { setInputSearch, setValueInput } from '../../redux/home/inputSlice';
+import { Link } from 'react-router-dom';
+import debounce from 'lodash.debounce';
 import Menu from '../Menu';
 import UserControl from '../UserControl';
 import styles from './Header.module.scss';
-import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
-  const dispath = useAppDispatch();
   const valueMenu = useAppSelector((state) => state.menuSlice.valueMenu);
   const valueCloseInput = useAppSelector(
     (state) => state.menuSlice.valueCloseInput
@@ -19,11 +25,21 @@ const Header: React.FC = () => {
   const inputSearch = useAppSelector((state) => state.inputSlice.inputSearch);
   const registered = useAppSelector((state) => state.signInSlice.registered);
   const { userName } = useAppSelector((state) => state.signInSlice);
+  const { valueInput } = useAppSelector((state) => state.inputSlice);
   const activeSearch = styles.inner__search__block__active;
   const noneBlockSearc = styles.inner__search__block__input;
   const btnRef = useRef(null);
   const searchRef = useRef(null);
   const btnSearchRef = useRef(null);
+  const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const dispath = useAppDispatch();
+
+  const updateSearchValue = useCallback(
+    debounce((str) => {
+      dispath(setInputSearch(str));
+    }, 1000),
+    []
+  );
 
   useEffect(() => {
     const eventSearch = (e: MouseEvent) => {
@@ -61,9 +77,11 @@ const Header: React.FC = () => {
           />
         )} */}
         <input
-          value={inputSearch}
-          onChange={(e) => {
-            dispath(setInputSearch(e.target.value));
+          ref={inputRef}
+          value={valueInput}
+          onChange={(e: any) => {
+            dispath(setValueInput(e.target.value));
+            updateSearchValue(e.target.value);
           }}
           className={
             valueCloseInput
@@ -78,6 +96,9 @@ const Header: React.FC = () => {
         <button
           ref={btnSearchRef}
           onClick={() => {
+            if (!!inputRef) {
+              inputRef.current.focus();
+            }
             dispath(setValueCloseInput(!valueCloseInput));
             dispath(setInputSearch(''));
           }}

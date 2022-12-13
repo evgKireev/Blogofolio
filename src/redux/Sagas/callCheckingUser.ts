@@ -7,7 +7,6 @@ import API from '../utils/API';
 export default function* callCheckingUser(api: any, ...rest: any) {
   const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY) || '';
   const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY) || '';
-
   const res: ApiResponse<any> = yield call(api, accessToken, ...rest);
 
   if (res.status === 401) {
@@ -36,9 +35,13 @@ export default function* callCheckingUser(api: any, ...rest: any) {
           return newResponse;
         } else {
           yield put(logoutUser());
+          localStorage.removeItem(REFRESH_TOKEN_KEY);
+          localStorage.removeItem(ACCESS_TOKEN_KEY);
         }
       } else {
         yield put(logoutUser());
+        localStorage.removeItem(REFRESH_TOKEN_KEY);
+        localStorage.removeItem(ACCESS_TOKEN_KEY);
       }
     } else {
       return res;
