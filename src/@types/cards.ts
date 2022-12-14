@@ -22,5 +22,6 @@ export enum LikeStatus {
 
 export type GetBlogsPayload = {
   offset: number;
-  search: string
+  search: string;
+  ordering: string;
 };

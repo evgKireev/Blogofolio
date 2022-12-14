@@ -14,8 +14,8 @@ import callCheckingUser from './callCheckingUser';
 
 function* getBlogsWorker(actions: PayloadAction<GetBlogsPayload>) {
   yield put(setIsLoading('pending'));
-  const { offset, search } = actions.payload;
-  const { data, ok, problem } = yield call(API.fechGetBlogs, offset, search);
+  const { offset, search, ordering } = actions.payload;
+  const { data, ok, problem } = yield call(API.fechGetBlogs, offset, search, ordering);
   if (ok) {
     yield put(setIsLoading('fullfild'));
     yield put(setBlogs(data.results));

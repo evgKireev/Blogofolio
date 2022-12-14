@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect } from 'react';
 import { getBlogs, getMyBlogs } from '../../redux/blogsSlice';
 import { PER_PAGE } from '../../@types/constant';
+import Sort from '../Sort';
 
 const Main: React.FC = () => {
   const { data } = useAppSelector((state) => state.blogsSlice);
@@ -24,16 +25,17 @@ const Main: React.FC = () => {
   const { poginationSelect } = useAppSelector((state) => state.blogsSlice);
   const { poginationCount } = useAppSelector((state) => state.blogsSlice);
   const { inputSearch } = useAppSelector((state) => state.inputSlice);
+  const { sortValue } = useAppSelector((state) => state.categoriesSlice);
   const dispatch = useAppDispatch();
   const totalPageCount = Math.ceil(poginationCount / PER_PAGE);
   const offset = PER_PAGE * (poginationSelect - 1);
 
   useEffect(() => {
-    dispatch(getBlogs({ offset, search: inputSearch }));
+    dispatch(getBlogs({ offset, search: inputSearch, ordering: sortValue }));
     if (registered) {
       dispatch(getMyBlogs());
     }
-  }, [registered, poginationSelect, inputSearch]);
+  }, [registered, poginationSelect, inputSearch, sortValue]);
 
   const cardsArray = () => {
     if (activeTabs === 1) {
@@ -66,7 +68,10 @@ const Main: React.FC = () => {
   return (
     <main>
       <h1>Blog</h1>
-      <Categories />
+      <div className={styles.categoriesInner}>
+        <Categories />
+        <Sort />
+      </div>
       {status === 'pending' ? (
         <Loader />
       ) : (

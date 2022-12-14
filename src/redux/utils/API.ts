@@ -14,8 +14,8 @@ const registerUser = ({ username, email, password }: UserType) => {
   });
 };
 
-const fechGetBlogs = (offset: number, search: string) => {
-  return API.get('/blog/posts/', { limit: PER_PAGE, offset, search });
+const fechGetBlogs = (offset: number, search: string, ordering: string) => {
+  return API.get('/blog/posts/', { limit: PER_PAGE, offset, search, ordering });
 };
 
 const fechActivteNewUser = ({ uid, token }: UserActivateType) => {
