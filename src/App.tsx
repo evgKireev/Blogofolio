@@ -15,7 +15,7 @@ import './scss/app.scss';
 import NoFaund from './components/NoFaund';
 import { useEffect } from 'react';
 import { getUserData } from './redux/Sign/signInSlice';
-import { ACCESS_TOKEN_KEY } from './@types/constant';
+import React from 'react';
 
 const App: React.FC = () => {
   const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
@@ -45,9 +45,14 @@ const App: React.FC = () => {
             element={<RegistrationConfirmation />}
           />
           <Route path="/activate/:uid/:token" element={<Success />} />
+
           <Route
             path="addPost"
-            element={registered ? <AddPost /> : <Navigate to="/signIn" />}
+            element={registered ? <AddPost disabled error /> : <Navigate to="/signIn" />}
+          />
+            <Route
+            path="one-blog/:id/edit"
+            element={registered ? <AddPost disabled error /> : <Navigate to="/signIn" />}
           />
           <Route path="resetPassword" element={<ResetPasword />} />
           <Route path="newPassword" element={<NewPasword />} />

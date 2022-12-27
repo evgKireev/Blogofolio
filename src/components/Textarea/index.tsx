@@ -7,15 +7,25 @@ type TextAreaType = {
   error?: boolean;
   disable?: boolean;
   className?: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  value?: string;
 };
 
-const TextArea: React.FC<TextAreaType> = ({ title, placeholder, className }) => {
+const TextArea: React.FC<TextAreaType> = ({
+  title,
+  placeholder,
+  className,
+  onChange,
+  value,
+}) => {
   return (
-    <div className={styles.inner} >
+    <div className={styles.inner}>
       <h3>{title}</h3>
       <textarea
-        className={classNames(styles.textArea,className)}
+        onChange={onChange}
+        className={classNames(styles.textArea, className)}
         placeholder={placeholder}
+        value={value}
       />
     </div>
   );

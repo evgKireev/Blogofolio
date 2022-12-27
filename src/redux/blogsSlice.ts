@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CardListType, GetBlogsPayload } from '../@types/cards';
+import {
+  CardListType,
+  CardsType,
+  GetBlogsPayload,
+} from '../@types/cards';
 
 export type BlogSliseState = {
   data: CardListType;
@@ -7,6 +11,7 @@ export type BlogSliseState = {
   status: string;
   poginationSelect: number;
   poginationCount: number;
+  blog: CardsType | null;
 };
 
 const initialState: BlogSliseState = {
@@ -15,6 +20,7 @@ const initialState: BlogSliseState = {
   status: '',
   poginationSelect: 1,
   poginationCount: 0,
+  blog: null,
 };
 
 const blogsSlice = createSlice({
@@ -38,6 +44,9 @@ const blogsSlice = createSlice({
     setpoginationCount: (state, actions: PayloadAction<number>) => {
       state.poginationCount = actions.payload;
     },
+    setBlog: (state, actions: PayloadAction<CardsType>) => {
+      state.blog = actions.payload;
+    },
   },
 });
 
@@ -49,5 +58,6 @@ export const {
   setMyBlogs,
   setPoginationSelect,
   setpoginationCount,
+  setBlog,
 } = blogsSlice.actions;
 export default blogsSlice.reducer;

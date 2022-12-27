@@ -12,7 +12,7 @@ import {
 import {
   getUserData,
   setRegistered,
-  setSignInUser,
+  getSignInUser,
   setUserData,
   logoutUser,
   setStatus,
@@ -63,7 +63,7 @@ function* signInUserWorker(actions: PayloadAction<SignInUserPayload>) {
 function* getUserMeWorker() {
   const { data, ok, problem } = yield callCheckingUser(API.getUserMe);
   if (ok && data) {
-    yield put(setUserData(data.username));
+    yield put(setUserData(data));
   } else {
     console.warn(problem);
   }
@@ -79,7 +79,7 @@ export default function* userSaga() {
   yield all([
     takeLatest(registerUser, registerUserWorker),
     takeLatest(activeNewUser, activatNewUserWorker),
-    takeLatest(setSignInUser, signInUserWorker),
+    takeLatest(getSignInUser, signInUserWorker),
     takeLatest(getUserData, getUserMeWorker),
     takeLatest(logoutUser, logoutUserWorker),
   ]);

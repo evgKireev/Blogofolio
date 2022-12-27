@@ -1,10 +1,10 @@
 export type CardsType = {
   id: number;
   image: string;
-  text?: string;
+  text: string;
   date?: string;
-  title?: string;
-  lesson_num?: number;
+  title: string;
+  lesson_num: number;
   author?: number;
 };
 
@@ -25,3 +25,14 @@ export type GetBlogsPayload = {
   search: string;
   ordering: string;
 };
+
+export interface IDataForm {
+  formData: any;
+  callback: () => void;
+}
+
+export interface IEditDAtaForm extends IDataForm {
+  id: string;
+}
+
+export interface IDeleteDataForm extends Omit<IEditDAtaForm, 'formData'> {}

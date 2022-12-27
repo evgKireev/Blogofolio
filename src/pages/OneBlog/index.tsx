@@ -5,11 +5,15 @@ import ButtonIcon from '../../components/ButtonIcon';
 import styles from './OneBlog.module.scss';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { CardsType } from '../../@types/cards';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import Buttons, { ButtonType } from '../../components/Buttons';
+import { setBlog } from '../../redux/blogsSlice';
 
 const OneBlog = () => {
-  const [blog, setBlog] = useState<CardsType>();
+  const { idUser } = useAppSelector((state) => state.signInSlice);
+  const { blog } = useAppSelector((state) => state.blogsSlice);
+  const dispatch = useAppDispatch();
   const [error, setError] = useState('');
   const { id } = useParams();
 
@@ -19,7 +23,7 @@ const OneBlog = () => {
         const { data } = await axios.get(
           `https://studapi.teachmeskills.by/blog/posts/` + id
         );
-        setBlog(data);
+        dispatch(setBlog(data));
       } catch (e: any) {
         setError(e.message);
       }
@@ -57,9 +61,18 @@ const OneBlog = () => {
             <BlogContainer title={blog?.title} lesson_num={blog?.lesson_num}>
               <div className={styles.container}>
                 <img className={styles.img} src={blog?.image} alt="img" />
-                <p className={styles.text}>{blog?.text}</p>
+                <div className={styles.text}>{blog?.text}</div>
                 <div className={styles.control}>
                   <div className={styles.like}>
+                    {idUser === blog.author ? (
+                      <Link to={`/one-blog/${id}/edit`}>
+                        <Buttons
+                          title={'Edit Post'}
+                          type={ButtonType.Primary}
+                          className={''}
+                        />
+                      </Link>
+                    ) : null}
                     <ButtonLike onClick={() => {}} />
                     <ButtonDisLike onClick={() => {}} />
                   </div>

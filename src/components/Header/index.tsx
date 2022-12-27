@@ -3,7 +3,6 @@ import {
   useCallback,
   useEffect,
   useRef,
-  useState,
 } from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { BiSearch, BiUser } from 'react-icons/bi';
@@ -22,9 +21,8 @@ const Header: React.FC = () => {
   const valueCloseInput = useAppSelector(
     (state) => state.menuSlice.valueCloseInput
   );
-  const inputSearch = useAppSelector((state) => state.inputSlice.inputSearch);
   const registered = useAppSelector((state) => state.signInSlice.registered);
-  const { userName } = useAppSelector((state) => state.signInSlice);
+  const { username } = useAppSelector((state) => state.signInSlice);
   const { valueInput } = useAppSelector((state) => state.inputSlice);
   const activeSearch = styles.inner__search__block__active;
   const noneBlockSearc = styles.inner__search__block__input;
@@ -107,8 +105,8 @@ const Header: React.FC = () => {
         >
           <BiSearch />
         </button>
-        {registered && !!userName ? (
-          <UserControl userName={userName} />
+        {registered && !!username ? (
+          <UserControl userName={username} />
         ) : (
           <Link to="signIn">
             <div className={styles.inner__user}>

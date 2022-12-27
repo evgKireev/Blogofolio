@@ -54,6 +54,36 @@ const getMyBlogs = (token: string) => {
   return API.get('/blog/posts/my_posts', { token });
 };
 
+const newPost = (token: string, formData: any) => {
+  return API.post('/blog/posts/', formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+};
+
+const editPost = (token: string, formData: any, id: string) => {
+  return API.put(`/blog/posts/${id}/`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+};
+
+const deletePost = (token: string, id: string) => {
+  return API.delete(
+    `/blog/posts/${id}/`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+
 export default {
   registerUser,
   fechGetBlogs,
@@ -63,4 +93,7 @@ export default {
   getNewAccessToken,
   verifyToken,
   getMyBlogs,
+  newPost,
+  editPost,
+  deletePost,
 };

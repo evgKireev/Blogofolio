@@ -21,7 +21,7 @@ const Menu: React.FC<menuType> = ({ btnRef }) => {
   const {valueOnMon} = useAppSelector((state) => state.menuSlice);
   const {valueMenu} = useAppSelector((state) => state.menuSlice);
   const { registered } = useAppSelector((state) => state.signInSlice);
-  const { userName } = useAppSelector((state) => state.signInSlice);
+  const { username } = useAppSelector((state) => state.signInSlice);
   const dispath = useAppDispatch();
   const menuRef = useRef(null);
 
@@ -48,8 +48,8 @@ const Menu: React.FC<menuType> = ({ btnRef }) => {
       ref={menuRef}
       className={valueMenu ? styles.activeBlock : styles.inner}
     >
-      {registered && !!userName && (
-        <UserControl userName={userName} onClick={() => console.log('User')} />
+      {registered && !!username && (
+        <UserControl userName={username} onClick={() => console.log('User')} />
       )}
       <div className={styles.menu}>
         <div className={styles.menuBlock}>

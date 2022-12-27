@@ -5,7 +5,7 @@ import Input, { InputType } from '../../components/Input';
 import Buttons, { ButtonType } from '../../components/Buttons';
 import { useAppDispatch } from '../../redux/hooks';
 import { useAppSelector } from '../../redux/hooks';
-import { setSignInMail, setSignInUser } from '../../redux/Sign/signInSlice';
+import { setSignInMail, getSignInUser } from '../../redux/Sign/signInSlice';
 import { setSignInPassword } from '../../redux/Sign/signInSlice';
 import styles from './SignIn.module.scss';
 
@@ -45,7 +45,7 @@ const SignIn: React.FC = () => {
           className={styles.btn}
           onClick={() => {
             dispatch(
-              setSignInUser({
+              getSignInUser({
                 data: { password, email },
                 callback: () => {navigate('/')},
               })

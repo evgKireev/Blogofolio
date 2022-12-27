@@ -29,3 +29,8 @@ export type SignInUser = {
   password: string;
 };
 
+export type UserMe = {
+  username: string;
+  id: number;
+  email: string;
+};
