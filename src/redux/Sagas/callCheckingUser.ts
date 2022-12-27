@@ -1,4 +1,5 @@
 import { ApiResponse } from 'apisauce';
+import { toast } from 'react-toastify';
 import { call, put } from 'redux-saga/effects';
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '../../@types/constant';
 import { logoutUser } from '../Sign/signInSlice';
@@ -37,11 +38,13 @@ export default function* callCheckingUser(api: any, ...rest: any) {
           yield put(logoutUser());
           localStorage.removeItem(REFRESH_TOKEN_KEY);
           localStorage.removeItem(ACCESS_TOKEN_KEY);
+          toast.error('Your session has expired, please log in');
         }
       } else {
         yield put(logoutUser());
         localStorage.removeItem(REFRESH_TOKEN_KEY);
         localStorage.removeItem(ACCESS_TOKEN_KEY);
+        toast.error('Your session has expired, please log in');
       }
     } else {
       return res;

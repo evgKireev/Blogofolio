@@ -11,21 +11,23 @@ import Buttons, { ButtonType } from '../../components/Buttons';
 import { setBlog } from '../../redux/blogsSlice';
 
 const OneBlog = () => {
+  const [status, setStatus] = useState('');
   const { idUser } = useAppSelector((state) => state.signInSlice);
   const { blog } = useAppSelector((state) => state.blogsSlice);
   const dispatch = useAppDispatch();
-  const [error, setError] = useState('');
   const { id } = useParams();
 
   useEffect(() => {
     async function getBlog() {
       try {
+        setStatus('pending');
         const { data } = await axios.get(
           `https://studapi.teachmeskills.by/blog/posts/` + id
         );
         dispatch(setBlog(data));
+        setStatus('fullfild');
       } catch (e: any) {
-        setError(e.message);
+        setStatus('rejected');
       }
     }
     window.scrollTo(0, 0);
@@ -34,7 +36,7 @@ const OneBlog = () => {
 
   return (
     <div>
-      {error ? (
+      {status === 'rejected' ? (
         <div className={styles.error}>
           <h2>
             Произошла ошибка <span>😕</span>
@@ -46,7 +48,7 @@ const OneBlog = () => {
         </div>
       ) : (
         <>
-          {!blog ? (
+          {status === 'pending' ? (
             <div className={styles.ldsRoller}>
               <div></div>
               <div></div>
@@ -64,7 +66,7 @@ const OneBlog = () => {
                 <div className={styles.text}>{blog?.text}</div>
                 <div className={styles.control}>
                   <div className={styles.like}>
-                    {idUser === blog.author ? (
+                    {idUser === blog?.author ? (
                       <Link to={`/one-blog/${id}/edit`}>
                         <Buttons
                           title={'Edit Post'}

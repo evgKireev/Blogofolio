@@ -8,6 +8,7 @@ import classNames from 'classnames';
 
 const Modal = () => {
   const news = useAppSelector((state) => state.controlsSlice.dropdawn);
+  const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
   const isOpenModal = useAppSelector(
     (state) => state.controlsSlice.isOpenModal
   );
@@ -19,7 +20,11 @@ const Modal = () => {
           [styles.showModal]: isOpenModal,
         })}
       >
-        <div className={styles.container}>
+        <div
+          className={classNames(styles.container, {
+            [styles.bodyMon]: valueOnMon,
+          })}
+        >
           {news && (
             <OneNews
               type={oneNewsBlock.DefaultBlock}

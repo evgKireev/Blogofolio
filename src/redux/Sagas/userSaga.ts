@@ -17,6 +17,7 @@ import {
   logoutUser,
   setStatus,
 } from '../Sign/signInSlice';
+import { toast } from 'react-toastify';
 
 function* registerUserWorker(actions: PayloadAction<UserPayloadType>) {
   yield put(setIsStatus('pending'));
@@ -27,7 +28,7 @@ function* registerUserWorker(actions: PayloadAction<UserPayloadType>) {
     callback();
   } else {
     yield put(setIsStatus('rejected'));
-    console.warn(problem);
+    toast.error("Error while registering");
   }
 }
 
@@ -56,7 +57,7 @@ function* signInUserWorker(actions: PayloadAction<SignInUserPayload>) {
     yield put(setStatus(''));
   } else {
     yield put(setStatus('rejected'));
-    console.warn(problem);
+    console.warn("Error while sign in: ", problem);
   }
 }
 
@@ -65,7 +66,7 @@ function* getUserMeWorker() {
   if (ok && data) {
     yield put(setUserData(data));
   } else {
-    console.warn(problem);
+    toast.error("Error while getting user info");
   }
 }
 

@@ -74,7 +74,6 @@ const AddPost: React.FC<AddPostType> = (disabled, error) => {
       );
     }
   };
-  console.log(Boolean(isEdit));
   useEffect(() => {
     if (blog) {
       dispatch(setInputFormTitle(blog.title));

@@ -11,7 +11,6 @@
   background-color: rgba(0, 0, 0, 0.399);
   position: fixed;
   transition: all 0.5s ease-in-out;
-
 }
 .container {
   max-width: 886px;
@@ -41,4 +40,8 @@
 .showModal {
   opacity: 1;
   visibility: visible;
+}
+
+.bodyMon {
+  background-color: #313037;
 }

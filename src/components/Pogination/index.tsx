@@ -1,6 +1,7 @@
+import classNames from 'classnames';
 import ReactPaginate from 'react-paginate';
 import { setPoginationSelect } from '../../redux/blogsSlice';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import styles from './Pogination.module.scss';
 
 type PoginationType = {
@@ -8,6 +9,7 @@ type PoginationType = {
 };
 
 const Pogination: React.FC<PoginationType> = ({ totalPageCount }) => {
+  const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
   const dispatch = useAppDispatch();
   return (
     <>
@@ -15,18 +17,26 @@ const Pogination: React.FC<PoginationType> = ({ totalPageCount }) => {
         className={styles.items}
         disabledClassName={styles.disabled}
         pageClassName={styles.item}
-        pageLinkClassName="page-link"
+        pageLinkClassName={classNames('page-link', {
+          [styles.bodyMon]: valueOnMon,
+        })}
         previousClassName={styles.previous__item}
-        previousLinkClassName="page-link"
+        previousLinkClassName={classNames('page-link', {
+          [styles.bodyMon]: valueOnMon,
+        })}
         nextClassName={styles.next__item}
-        nextLinkClassName="page-link"
+        nextLinkClassName={classNames('page-link', {
+          [styles.bodyMon]: valueOnMon,
+        })}
         breakClassName="page-item"
-        breakLinkClassName="page-link"
+        breakLinkClassName={classNames('page-link', {
+          [styles.bodyMon]: valueOnMon,
+        })}
         activeClassName={styles.active}
         breakLabel="..."
         nextLabel="Next ->"
         previousLabel="<- Prev"
-        onPageChange={(e) => dispatch(setPoginationSelect(e.selected+1))}
+        onPageChange={(e) => dispatch(setPoginationSelect(e.selected + 1))}
         pageCount={totalPageCount}
       />
     </>

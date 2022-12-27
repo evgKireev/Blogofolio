@@ -1,4 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import { takeLatest, all, call, put } from 'redux-saga/effects';
 import {
   GetBlogsPayload,
@@ -62,8 +63,9 @@ function* onSevPostWorker(actions: PayloadAction<IDataForm>) {
   if (ok) {
     callback();
     yield put(setstatusAddPost('fullfild'));
+    toast.success('Post added successfully');
   } else {
-    console.warn(problem);
+    toast.error('Error adding new post');
     yield put(setstatusAddPost('rejected'));
   }
 }
@@ -73,19 +75,21 @@ function* onEditPostWorker(actions: PayloadAction<IEditDAtaForm>) {
   const { ok, problem } = yield callCheckingUser(API.editPost, formData, id);
   if (ok) {
     callback();
+    toast.success('Post edited  successfully');
   } else {
-    console.warn(problem);
+    toast.error('Error editing post');
   }
 }
 
 function* onDeletePostWorker(actions: PayloadAction<IDeleteDataForm>) {
   const { id, callback } = actions.payload;
-  console.log(id)
+  console.log(id);
   const { ok, problem } = yield callCheckingUser(API.deletePost, id);
   if (ok) {
     callback();
+    toast.success('Post deleted successfully');
   } else {
-    console.warn(problem);
+    toast.error('Error fetching post');
   }
 }
 
