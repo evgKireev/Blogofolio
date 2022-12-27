@@ -1,6 +1,11 @@
 import { create } from 'apisauce';
 import { PER_PAGE } from '../../@types/constant';
-import { SignInUser, UserActivateType, UserType } from '../../@types/user';
+import {
+  SignInUser,
+  UserActivatePasswordType,
+  UserActivateType,
+  UserType,
+} from '../../@types/user';
 
 const API = create({
   baseURL: 'https://studapi.teachmeskills.by',
@@ -84,6 +89,23 @@ const deletePost = (token: string, id: string) => {
   );
 };
 
+const resetPasswordUser = (email: string) => {
+  return API.post('/auth/users/reset_password/', { email });
+};
+
+const ActivteNewPasswordUser = ({
+  uid,
+  token,
+  new_password,
+}: UserActivatePasswordType) => {
+  console.log(uid)
+  return API.post('/auth/users/reset_password_confirm/', {
+    uid,
+    token,
+    new_password,
+  });
+};
+
 export default {
   registerUser,
   fechGetBlogs,
@@ -96,4 +118,6 @@ export default {
   newPost,
   editPost,
   deletePost,
+  resetPasswordUser,
+  ActivteNewPasswordUser,
 };

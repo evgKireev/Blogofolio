@@ -59,7 +59,7 @@ function* getMyBlogWorker() {
 function* onSevPostWorker(actions: PayloadAction<IDataForm>) {
   yield put(setstatusAddPost('pending'));
   const { formData, callback } = actions.payload;
-  const { ok, problem } = yield callCheckingUser(API.newPost, formData);
+  const { ok } = yield callCheckingUser(API.newPost, formData);
   if (ok) {
     callback();
     yield put(setstatusAddPost('fullfild'));
@@ -72,7 +72,7 @@ function* onSevPostWorker(actions: PayloadAction<IDataForm>) {
 
 function* onEditPostWorker(actions: PayloadAction<IEditDAtaForm>) {
   const { formData, callback, id } = actions.payload;
-  const { ok, problem } = yield callCheckingUser(API.editPost, formData, id);
+  const { ok } = yield callCheckingUser(API.editPost, formData, id);
   if (ok) {
     callback();
     toast.success('Post edited  successfully');
@@ -83,7 +83,6 @@ function* onEditPostWorker(actions: PayloadAction<IEditDAtaForm>) {
 
 function* onDeletePostWorker(actions: PayloadAction<IDeleteDataForm>) {
   const { id, callback } = actions.payload;
-  console.log(id);
   const { ok, problem } = yield callCheckingUser(API.deletePost, id);
   if (ok) {
     callback();

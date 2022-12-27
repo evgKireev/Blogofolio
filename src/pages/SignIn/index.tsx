@@ -38,7 +38,10 @@ const SignIn: React.FC = () => {
             onChange={(e) => dispatch(setSignInPassword(e.target.value))}
           />
         </div>
-        <div className={styles.question}>Forgot password?</div>
+        <Link to="/resetPassword">
+          {' '}
+          <div className={styles.question}>Forgot password?</div>
+        </Link>
         <Buttons
           type={ButtonType.Primary}
           title={'Sign In'}
@@ -47,13 +50,15 @@ const SignIn: React.FC = () => {
             dispatch(
               getSignInUser({
                 data: { password, email },
-                callback: () => {navigate('/')},
+                callback: () => {
+                  navigate('/');
+                },
               })
             );
           }}
         />
         <div className={styles.desc}>
-          Don’t have an account?{' '}
+          Don’t have an account?
           <Link to="../signUp">
             <span className={styles.span}>Sign Up</span>
           </Link>

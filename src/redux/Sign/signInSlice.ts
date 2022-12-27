@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ACCESS_TOKEN_KEY } from '../../@types/constant';
-import { SignInUserPayload, UserMe } from '../../@types/user';
+import {
+  ResetPasswordUserPayload,
+  SignInUserPayload,
+  UserActivatePasswordPayload,
+  UserMe,
+} from '../../@types/user';
 
 type initialStateSignIn = {
   signInMail: string;
@@ -9,6 +14,7 @@ type initialStateSignIn = {
   username: string;
   idUser: number | null;
   status: string;
+  statusResetPassword: string;
 };
 
 const initialState: initialStateSignIn = {
@@ -18,6 +24,7 @@ const initialState: initialStateSignIn = {
   username: '',
   idUser: null,
   status: '',
+  statusResetPassword: '',
 };
 
 const signInSlice = createSlice({
@@ -31,6 +38,14 @@ const signInSlice = createSlice({
       state.signInPassword = actions.payload;
     },
     getSignInUser(state, actoins: PayloadAction<SignInUserPayload>) {},
+    resetPasswordInUser(
+      state,
+      actoins: PayloadAction<ResetPasswordUserPayload>
+    ) {},
+    activatePasswordInUser(
+      state,
+      actoins: PayloadAction<UserActivatePasswordPayload>
+    ) {},
     setRegistered(state, actions: PayloadAction<boolean>) {
       state.registered = actions.payload;
     },
@@ -44,6 +59,9 @@ const signInSlice = createSlice({
     setStatus(state, actions: PayloadAction<string>) {
       state.status = actions.payload;
     },
+    setStatusResetPassword(state, actions: PayloadAction<string>) {
+      state.statusResetPassword = actions.payload;
+    },
   },
 });
 
@@ -56,9 +74,13 @@ export const {
   getUserData,
   logoutUser,
   setStatus,
+  resetPasswordInUser,
+  setStatusResetPassword,
+  activatePasswordInUser,
 } = signInSlice.actions;
 export default signInSlice.reducer;
 
 // uxp24601@xcoxc.com.
 // yws80752@nezid.com
 // zgu66366@xcoxc.com
+//eaw31827@nezid.com

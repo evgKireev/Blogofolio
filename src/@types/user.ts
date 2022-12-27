@@ -14,6 +14,17 @@ export type UserActivateType = {
   token?: string;
 };
 
+export type UserActivatePasswordType = {
+  uid?: string;
+  token?: string;
+  new_password: string;
+};
+
+export type UserActivatePasswordPayload = {
+  data: UserActivatePasswordType;
+  callback: () => void;
+};
+
 export type UserActivatePayload = {
   data: UserActivateType;
   callback: () => void;
@@ -32,5 +43,9 @@ export type SignInUser = {
 export type UserMe = {
   username: string;
   id: number;
+  email: string;
+};
+
+export type ResetPasswordUserPayload = {
   email: string;
 };

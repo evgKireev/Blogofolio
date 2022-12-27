@@ -5,7 +5,9 @@ import { activeNewUser, registerUser, setIsStatus } from '../Sign/signUpSlice';
 import API from '../utils/API';
 import callCheckingUser from './callCheckingUser';
 import {
+  ResetPasswordUserPayload,
   SignInUserPayload,
+  UserActivatePasswordPayload,
   UserActivatePayload,
   UserPayloadType,
 } from '../../@types/user';
@@ -16,19 +18,22 @@ import {
   setUserData,
   logoutUser,
   setStatus,
+  resetPasswordInUser,
+  setStatusResetPassword,
+  activatePasswordInUser,
 } from '../Sign/signInSlice';
 import { toast } from 'react-toastify';
 
 function* registerUserWorker(actions: PayloadAction<UserPayloadType>) {
   yield put(setIsStatus('pending'));
   const { data: registerData, callback } = actions.payload;
-  const { ok, problem } = yield call(API.registerUser, registerData);
+  const { ok } = yield call(API.registerUser, registerData);
   if (ok) {
     yield put(setIsStatus(''));
     callback();
   } else {
     yield put(setIsStatus('rejected'));
-    toast.error("Error while registering");
+    toast.error('Error while registering');
   }
 }
 
@@ -57,16 +62,16 @@ function* signInUserWorker(actions: PayloadAction<SignInUserPayload>) {
     yield put(setStatus(''));
   } else {
     yield put(setStatus('rejected'));
-    console.warn("Error while sign in: ", problem);
+    toast.error('Error while sign in: ', problem);
   }
 }
 
 function* getUserMeWorker() {
-  const { data, ok, problem } = yield callCheckingUser(API.getUserMe);
+  const { data, ok } = yield callCheckingUser(API.getUserMe);
   if (ok && data) {
     yield put(setUserData(data));
   } else {
-    toast.error("Error while getting user info");
+    toast.error('Error while getting user info');
   }
 }
 
@@ -76,6 +81,32 @@ function* logoutUserWorker() {
   localStorage.removeItem(REFRESH_TOKEN_KEY);
 }
 
+function* resetPasswordUserWorker(
+  actions: PayloadAction<ResetPasswordUserPayload>
+) {
+  yield put(setStatusResetPassword('pending'));
+  const { email } = actions.payload;
+  const { ok } = yield call(API.resetPasswordUser, email);
+  if (ok) {
+    yield put(setStatusResetPassword('fullfiled'));
+  } else {
+    toast.error('Error while reset password');
+  }
+}
+
+function* activatPassUserWorker(
+  actions: PayloadAction<UserActivatePasswordPayload>
+) {
+  const { data, callback } = actions.payload;
+  const { ok, problem } = yield call(API.ActivteNewPasswordUser, data);
+  if (ok) {
+    toast.success('reset password successfully');
+    callback();
+  } else {
+    toast.error(`${problem}`);
+  }
+}
+
 export default function* userSaga() {
   yield all([
     takeLatest(registerUser, registerUserWorker),
@@ -83,5 +114,7 @@ export default function* userSaga() {
     takeLatest(getSignInUser, signInUserWorker),
     takeLatest(getUserData, getUserMeWorker),
     takeLatest(logoutUser, logoutUserWorker),
+    takeLatest(resetPasswordInUser, resetPasswordUserWorker),
+    takeLatest(activatePasswordInUser, activatPassUserWorker),
   ]);
 }

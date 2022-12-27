@@ -55,7 +55,7 @@ const App: React.FC = () => {
             element={registered ? <AddPost disabled error /> : <Navigate to="/signIn" />}
           />
           <Route path="resetPassword" element={<ResetPasword />} />
-          <Route path="newPassword" element={<NewPasword />} />
+          <Route path="/password/reset/confirm/:uid/:token" element={<NewPasword />} />
           <Route path="one-blog/:id" element={<OneBlog />} />
           <Route path="*" element={<NoFaund />} />
         </Route>

@@ -3,10 +3,12 @@ import styles from './Sort.module.scss';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { setSortValue } from '../../redux/home/categoriesSlice';
 import { IoMdArrowDropup, IoMdArrowDropdown } from 'react-icons/io';
+import classNames from 'classnames';
 const Sort = () => {
   const sortRef = useRef(null);
   const [open, setOpen] = useState(false);
   const { sortValue } = useAppSelector((state) => state.categoriesSlice);
+  const valueOnMon = useAppSelector((state) => state.menuSlice.valueOnMon);
   const dispatch = useAppDispatch();
 
   const sortName: {
@@ -43,7 +45,7 @@ const Sort = () => {
         </span>
       </div>
       {open && (
-        <div className={styles.popup}>
+        <div className={classNames(styles.popup, {[styles.bodyMon]:valueOnMon})}>
           <ul className={styles.list}>
             {sortName.map((value, index) => (
               <li
